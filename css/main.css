@@ -1,0 +1,604 @@
+@charset "UTF-8";
+body {
+    font-family: simsun, Arial;
+    font-size: 12px;
+    color: #666;
+    background: #fff;
+}
+
+.mt6 {
+    margin-top: 6px;
+}
+
+.pt70 {
+    padding-top: 70px;
+}
+
+.mb23 {
+    margin-bottom: 23px;
+}
+
+
+/*通用链接*/
+
+.link-red {
+    color: #c81623;
+}
+
+.link-blue {
+    color: #1a4991;
+}
+
+.link-black {
+    color: #555;
+}
+
+.c369 {
+    color: #369;
+}
+
+a:hover {
+    color: #c00;
+}
+
+
+/*通用按钮*/
+
+.btn-red {
+    display: inline-block;
+    width: 290px;
+    padding: 8px 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    background: #ca0000;
+    color: #fff;
+}
+
+.wrapper {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+    border-bottom: 2px solid #ca0000;
+    height: 70px;
+    line-height: 70px;
+}
+
+#header h1 {
+    font: 18px/70px microsoft Yahei;
+    color: #333;
+    margin-left: 12px;
+}
+
+html.login #header {
+    border-color: #999;
+}
+
+
+/*logo*/
+
+.login-wrap {
+    background: url(../images/login_bg.jpg) center top no-repeat;
+    height: 500px;
+    min-width: 1000px;
+}
+
+.login-content-bg {
+    background: rgba(255, 255, 255, .2);
+    width: 347px;
+    float: right;
+    margin: 84px 33px 0 0;
+    padding: 5px;
+}
+
+.login-content {
+    background: #fff;
+    padding: 0 21px 15px 21px;
+}
+
+.login-content form h3 {
+    font: 18px/20px microsoft Yahei;
+    color: #333;
+    padding: 13px 0;
+}
+
+.login-form-group {
+    border: 1px solid #bdbdbd;
+    height: 38px;
+}
+
+.login-form-group label {
+    float: left;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-right: 1px solid #bdbdbd;
+    background: #f3f3f3;
+}
+
+.login-form-group label i {
+    background: url(../images/ico_login.png) 0 0;
+    no-repeat;
+    display: inline-block;
+    line-height: 38px;
+}
+
+.login-form-group .ico-accout {
+    width: 15px;
+    height: 17px;
+}
+
+.login-form-group .ico-pwd {
+    background-position: 0 -17px;
+    width: 13px;
+    height: 15px;
+}
+
+.login-form-group input {
+    border: none;
+    float: left;
+    height: 100%;
+    line-height: 38px\9;
+    padding: 0 12px;
+    width: 240px;
+}
+
+.login-content form .btn-red {
+    width: 305px;
+    font-family: microsoft Yahei;
+    font-size: 24px;
+    color: #fff;
+}
+
+.login-other .login-tips {
+    line-height: 16px;
+    margin-top: 10px;
+}
+
+.other-account dt {
+    line-height: 30px;
+    color: #666;
+}
+
+.other-account dd span {
+    height: 16px;
+    display: inline-block;
+}
+
+span.qq-lg {
+    padding-left: 20px;
+    background: url(../images/tubiao-qq.gif) no-repeat;
+}
+
+span.weixin-lg {
+    background: url("../images/weixin_logo.png") 0 0 no-repeat;
+    padding-left: 20px;
+}
+
+span.sina-lg {
+    background: url("../images/tubiao-sina.gif") 0 0 no-repeat;
+    padding-left: 20px;
+}
+
+span.baidu-lg {
+    background: url("../images/tubiao-baidu.jpg") no-repeat scroll 0 0;
+    padding-left: 20px;
+}
+
+.other-account dd span a {
+    color: #1a4991;
+}
+
+.other-account dd span a:hover {
+    color: #c00;
+}
+
+.person-service .service-hd {
+    font: 18px/38px microsoft Yahei;
+    color: #333;
+    border-bottom: 1px solid #a0a0a0;
+    text-align: right;
+}
+
+.person-service .service-hd .hotline {
+    background: url(../images/ico_phone.png) 0 0 no-repeat;
+    padding-left: 38px;
+    display: inline-block;
+    line-height: 26px;
+    color: #666;
+}
+
+.service-list {
+    margin-right: -44px;
+    *overflow: hidden;
+    *zoom: 1;
+    margin-top: 32px;
+}
+
+.service-list li {
+    float: left;
+    width: 72px;
+    margin-right: 44px;
+    text-align: center;
+}
+
+.service-list li p {
+    font-size: 14px;
+    color: #666;
+    line-height: 32px;
+}
+
+.service-list li a {
+    display: block;
+}
+
+.service-list li a:hover p {
+    color: #c00;
+}
+
+.greybg-box {
+    background: #f3f3f3;
+    padding: 30px 0 40px;
+}
+
+.content-box {
+    background: #fff;
+    min-height: 420px;
+}
+
+.success-handle {
+    padding-top: 69px;
+}
+
+.success-handle h2 {
+    background: url(../images/success.png) left center no-repeat;
+    font: 24px/36px microsoft Yahei;
+    color: #333;
+    padding-left: 43px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.success-handle p {
+    font-size: 14px;
+    line-height: 28px;
+    color: #999;
+}
+
+.success-handle .btn-link {
+    width: 160px;
+    height: 48px;
+    background: #cb0100;
+    text-align: center;
+    font: 18px/48px microsoft Yahei;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.service-list2 {
+    margin-right: 0;
+    margin-left: 14px;
+}
+
+.service-list2 li {
+    margin: 0 18px;
+}
+
+
+/*表单*/
+
+.ml260 {
+    margin-left: 260px;
+}
+
+.content-box form .btn-red {
+    margin-left: 110px;
+}
+
+.form-title {
+    font: 18px/36px microsoft Yahei;
+    color: #333;
+}
+
+.form-group {
+    margin: 18px 0;
+    line-height: 28px;
+    vertical-align: top;
+}
+
+.form-group.mb10 {
+    margin-bottom: 10px;
+}
+
+.control-label,
+.form-control {
+    float: left;
+    display: inline;
+}
+
+.xin {
+    color: #f00;
+    font-size: 12px;
+    margin-right: 6px;
+    font-weight: normal;
+}
+
+.control-label {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 28px;
+    color: #333;
+    width: 98px;
+    text-align: right;
+    margin-right: 12px;
+}
+
+.txt {
+    width: 272px;
+    height: 28px;
+    line-height: 28px\9;
+    font-size: 12px;
+    padding:0 8px;
+    float: left;
+    border: 1px solid #d7d7d7;
+    background: #fff;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+}
+
+.txt23,
+.txt23 {
+    width: 23px;
+}
+
+.txt38,
+.txt38 {
+    width: 38px;
+}
+
+.txt88,
+.txt88 {
+    width: 88px;
+}
+
+.txt98,
+.txt98 {
+    width: 98px;
+}
+
+.txt118,
+.txt118 {
+    width: 118px;
+}
+
+.txt128,
+.txt128 {
+    width: 118px;
+}
+
+
+.txt162 {
+    width: 162px;
+}
+
+.txt198,
+.txt198 {
+    width: 198px;
+}
+
+.txt398,
+.txt398 {
+    width: 398px;
+}
+
+.txt438,
+.txt438 {
+    width: 438px;
+}
+
+.txt448,
+.txt448 {
+    width: 448px;
+}
+
+.pwd-success-handle p {
+    line-height: 49px;
+}
+
+
+/*reg*/
+
+.reg-chk {
+    margin-bottom: 12px;
+}
+
+.reg-chk label {
+    display: block;
+    line-height: 23px;
+    color: #a4a4a4;
+}
+
+.reg-chk label a {
+    color: #ca0000;
+}
+
+.reg-chk label input,
+.reg-chk label span {
+    vertical-align: middle;
+}
+
+.reg-chk label input {
+    margin-right: 3px;
+}
+
+.ml110 {
+    margin-left: 110px;
+}
+
+.reg-person-service {
+    width: 280px;
+    margin-right: 80px;
+    margin-bottom: 53px;
+    border-left: 1px solid #dcdcdc;
+    padding-left: 82px;
+}
+
+.reg-person-service .service-list {
+    margin-left: 11px;
+}
+
+.reg-person-service .service-list li {
+    width: 60px;
+    margin-right: 39px;
+}
+
+.reg-person-service .service-list li img {
+    width: 60px;
+    height: 60px;
+}
+
+.reg-person-service .service-list li p {
+    font-size: 12px;
+    line-height: 30px;
+    margin-bottom: 11px;
+}
+
+.common-question dt {
+    font: 18px/30px microsoft Yahei;
+    color: #333;
+}
+
+.common-question dd {
+    line-height: 22px;
+    color: #666;
+}
+
+.common-question dd strong {
+    font-weight: bold;
+}
+
+.common-question dd a {
+    color: #ca0000;
+}
+
+.regform {
+    margin: 36px 0 0 60px;
+}
+
+.form-control .sex {
+    display: inline-block;
+    width: 138px;
+    height: 28px;
+    border: 1px solid #d7d7d7;
+    font-size: 12px;
+    line-height: 28px;
+    color: #a4a4a4;
+    text-align: center;
+    cursor: pointer;
+}
+
+.form-control .sex.selected {
+    border-color: #ca0000;
+    color: #464646;
+    background: url(../images/ico_selected.png) right bottom no-repeat;
+}
+
+
+/*下拉列表*/
+
+.pulldown-box {
+    background: #fff;
+    color: #333;
+    float: left;
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px\9;
+    outline: none;
+    text-indent: 8px;
+    width: 100px;
+    border-radius: 2px;
+    font-family: simsun, Arial;
+    padding: 0;
+    position: relative;
+}
+
+.pulldown-box .pulldown {
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 12px;
+    height: 100%;
+    outline: medium none;
+    text-indent: 8px;
+    border-radius: 2px;
+    border: 1px solid #d7d7d7;
+    position: relative;
+    z-index: 0;
+}
+
+.pulldown-box .pulldown span {
+    float: left;
+    color: #a4a4a4;
+}
+
+.pulldown-box .pulldown i {
+    color: #333;
+    display: inline;
+    float: right;
+    font-style: normal;
+    margin: 10px 10px 0 0;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-style: solid dashed dashed dashed;
+    border-width: 5px;
+    border-color: #333 transparent transparent transparent;
+}
+
+.pulldown-box .pulldown-list {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    display: none;
+    left: -1px;
+    position: absolute;
+    top: 27px;
+    width: 228px;
+    max-height: 100px;
+    overflow: auto;
+    z-index: 999;
+}
+
+.pulldown-box .pulldown-list li {
+    color: #000;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 24px;
+    padding: 0 7px;
+}
+
+.pulldown-box .pulldown-list li:hover {
+    background: #ccc none repeat scroll 0 0;
+}
