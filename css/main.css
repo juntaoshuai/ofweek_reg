@@ -402,6 +402,9 @@ span.baidu-lg {
 .txt160 {
     width: 160px;
 }
+.txt162 {
+    width: 162px;
+}
 
 .txt198,
 .txt198 {
@@ -656,4 +659,9 @@ span.baidu-lg {
     height: 14px;
     margin: 7px 0 0 8px;
     padding-left: 20px;
+}
+
+.input-tips{
+    line-height: 28px;
+    clear: both;
 }
