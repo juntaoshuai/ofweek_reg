@@ -338,10 +338,11 @@ span.baidu-lg {
 }
 
 .xin {
-    color: #f00;
-    font-size: 12px;
+    color: #ca0000;
+    font-size: 14px;
     margin-right: 6px;
     font-weight: normal;
+    font-style:normal;
 }
 
 .control-label {
@@ -363,7 +364,6 @@ span.baidu-lg {
     float: left;
     border: 1px solid #d7d7d7;
     background: #fff;
-    font-size: 14px;
     color: #333;
     outline: none;
 }
@@ -399,8 +399,8 @@ span.baidu-lg {
 }
 
 
-.txt162 {
-    width: 162px;
+.txt160 {
+    width: 160px;
 }
 
 .txt198,
@@ -601,4 +601,59 @@ span.baidu-lg {
 
 .pulldown-box .pulldown-list li:hover {
     background: #ccc none repeat scroll 0 0;
+}
+.find-pwd-tab{
+    width:290px;
+    margin-left: 110px;
+}
+.find-pwd-tab li{
+    float: left;
+    font:18px/36px microsoft Yahei;
+    border-bottom: 1px solid #dcdcdc;
+    width:145px;
+    text-align: center;
+
+}
+.find-pwd-tab li.active{
+    border-bottom:2px solid #cf0000;
+    margin-bottom:-1px;
+    margin-top: -1px;
+}
+.find-pwd-tab li a{
+    color:#666;
+}
+
+.find-pwd-tab li.active a{
+    color:#cf0000;
+}
+
+.getcode{
+    width:100px;
+    height: 30px;
+    background: url(../images/code_btn.png) 0 0 no-repeat;
+    border:none;
+    float: left;
+    margin-left: 10px;
+}
+
+.nopass{
+    display: block;
+    font-size: 12px;
+    line-height:14px;
+    color:#ca0000;
+    background:url(../images/ico_info.png) 0 -28px no-repeat;
+    height: 14px;
+    clear: both;
+    padding:0 0 0 20px;
+    margin-top: 35px;
+}
+
+.pass{
+    float: left;
+    line-height: 14px;
+    color: #ca0000;
+    background: url(../images/ico_info.png) 0 -14px no-repeat;
+    height: 14px;
+    margin: 7px 0 0 8px;
+    padding-left: 20px;
 }
