@@ -303,7 +303,6 @@ function btnSubmit(btn){
             }
         });
 
-
         return true;
     }
 });
@@ -319,12 +318,7 @@ var valiate={
         checkImgCode("#img_code");
         checkPwd("#pwd");
         checkRePwd("#repwd");
-        
-
         btnSubmit("#regForm .btn-red");
-
-	
-	
 	}
 }
 
