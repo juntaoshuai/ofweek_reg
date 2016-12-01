@@ -120,12 +120,38 @@ function checkEmpty(obj) {
 }
 
 function checkLength(obj,len){
+
     if($.trim($(obj).val()).length>len){
         return true;
     }else{
         return false;
     }
 }
+
+function checkEmpty1(obj,msg) {
+    
+   
+    if($.trim($(obj).val()) == ""){
+        noPass(msg,obj);
+        return false;
+    }else{
+        pass(obj);
+        return true;
+    }
+        
+    }
+
+function checkLength1(obj,len,msg){
+       
+    if($.trim($(obj).val()).length>len){
+       noPass(msg,obj);
+       return false;
+    }else{
+        pass(obj);
+        return true;
+    }
+}
+
 
 function checkPhoneAndEmail(obj) {
     $(obj).blur(function() {
@@ -311,14 +337,24 @@ function btnSubmit(btn){
 
 
 
-
 var valiate={
 	regform:function(){
-		checkPhoneAndEmail("#account");
-        checkImgCode("#img_code");
-        checkPwd("#pwd");
-        checkRePwd("#repwd");
-        btnSubmit("#regForm .btn-red");
+		//checkPhoneAndEmail("#account");
+        $("#account").blur(function(){
+        var r=checkEmpty1("#account","不能为空");
+        if(r){
+            alert("come")
+             checkLength1("#account",20,"长度太大");
+        }    
+        });
+        
+        // checkEmpty1("#account","不能为空")
+        // checkLength1("#account",20,"长度太大");
+        
+        // checkImgCode("#img_code");
+        // checkPwd("#pwd");
+        // checkRePwd("#repwd");
+        // btnSubmit("#regForm .btn-red");
 	}
 }
 
