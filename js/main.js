@@ -3,7 +3,7 @@ jQuery(function($){
 	var pulldown = function() {
 	 $(".pulldown").click(function() {
 
-	   $(this).parent().css("z-index",999).find(".pulldown-list").css("z-index",999).closest(".form-item").css("z-index",999).siblings().css("z-index",1).find(".pulldown-box").css("z-index",1).find(".pulldown-list").css("z-index",1).hide();
+	   $(this).parent().css("z-index",888).find(".pulldown-list").css("z-index",888).closest(".form-item").css("z-index",888).siblings().css("z-index",1).find(".pulldown-box").css("z-index",1).find(".pulldown-list").css("z-index",1).hide();
 
 	    $(this).next().toggle().css({
 	        'width':$(this).width(),
@@ -78,7 +78,7 @@ function remoteCheckMobileEmail(obj,url,msg){
             data:{name:objval},
             success:function(data){
                 var data=$.parseJSON(data);
-                if(data.status==1){
+                if(data.status=="n"){
                    noPass(msg, obj);
                 }else{
                     //输入手机时，出现图片验证码,邮箱则隐藏
@@ -168,7 +168,6 @@ $("#getcode").click(function(){
        $(this).css("background","#ddd");
        return false;
     }
-    alert("come");
 
 
     var iCount=60,
@@ -257,26 +256,61 @@ function checkRePwd(obj) {
         }else{
             pass(obj);
         }
+    });
+}
+//感兴趣行业
+function checkRePwd(obj) {
+    $(obj).blur(function() {
+        if (checkEmpty(obj)) {
+            noPass("请再次输入密码",obj);
+        }else if($("#pwd").val()!=$(obj).val()){
+            noPass("您2次输入的密码不一致",obj);
+        }else{
+            pass(obj);
+        }
        
     });
 
 }
-//申报奖项
-function validateAwards() {
-        var $award = $(".apply-award");
-        var $msg = $('<span class="Validform_checktip"></span>');
-        $award.find(".Validform_checktip").remove();
-        if (!$award.find(":checked").length) {
-            $msg.html("请选择申报奖项").appendTo($(".apply-award"));
-            $award.addClass("error");
-        } else if ($award.find(":checked").length > 2) {
-            $msg.html("不能超过2项").appendTo($(".apply-award"));
-            $award.addClass("error");
-        } else {
-            $award.removeClass("error");
 
-        }
+//申报奖项
+function checkInterest(obj,msg) {
+    if($(obj).text()==msg){
+        var $msg = $('<span class="nopass"></span>');
+        $(obj).addClass("error").closest(".pulldown-box").siblings(".nopass,.pass,.input-tips").remove();
+        $msg.html(msg).appendTo($(obj).closest(".form-control"));
+    }else{
+         var $pass = $('<span class="pass"></span>');
+        $(obj).remove("error").closest(".pulldown-box").siblings(".nopass,.pass,.input-tips").remove();
+        $pass.appendTo($(obj).closest(".form-control"));
+    }       
 }
+
+function btnSubmit(btn){
+    $(btn).click(function(ev){
+        alert("click");
+    $(".form-control .txt").trigger("blur");
+    checkInterest("#jselect","您可以选择5个行业");
+    if($(".form-control .error").length){
+        return false;
+    }else{
+        //ajax表单提交
+        var data=$("#regForm").serialize();
+        ///registerUserUpdate.do
+        $.getJSON('js/data1.txt',data,function(data){
+            if(data.status=="y"){
+                location.href="complete_info.html";
+            }
+        });
+
+
+        return true;
+    }
+});
+
+}
+
+
 
 
 var valiate={
@@ -285,6 +319,9 @@ var valiate={
         checkImgCode("#img_code");
         checkPwd("#pwd");
         checkRePwd("#repwd");
+        
+
+        btnSubmit("#regForm .btn-red");
 
 	
 	
@@ -292,6 +329,7 @@ var valiate={
 }
 
 valiate.regform();
+
 
 
 
@@ -307,30 +345,6 @@ function getApplyAward(){
 }
 
 
-$("#reg-btn").click(function(ev) {
-    ev.preventDefault();
-	$(".form-item input,.form-item textarea").trigger("blur");
-    validateAwards();
-    //给申报奖项隐藏域设值
-    getApplyAward();
-
-    $(".form-item .txt,.form-item textarea").each(function(){
-    	if($(this).hasClass("error")){
-    	//把光标定到第一个错误的文本框
-           $(this).focus();
-           $("html,body").animate({'scrollTop':$(this).offset().top-30},300);
-           return false;
-    	}
-    });
-
-
-
-
-
-
-
 
 
 });
-});
-

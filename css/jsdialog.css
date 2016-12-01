@@ -1,0 +1,433 @@
+@charset 'utf-8';
+
+/*
+名称：js select dialog 样式
+维护：王文 wangwen1220#139.com
+依赖：hr-global.css & jsdialog.js
+日期：2013-3-20
+*/
+
+/* Layout
+----------------------------------------------------------------------------- */
+/* 弹窗 */
+.jsdialog {
+	display: none;
+	position: fixed;
+	left: 50%;
+	margin-left: -290px;
+	top: 20%;
+	padding: 10px;
+	width: 628px;
+	border: 1px solid #ddd;
+	z-index: 999;
+	background: #F4F4F4;
+	_position:absolute;
+	_margin-top: 0;
+	_top: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ?
+		documentElement.scrollTop+(document.documentElement.clientHeight-this.offsetHeight)/2 :/* IE6 */
+		document.body.scrollTop+(document.body.clientHeight-this.clientHeight)/2);/*IE5 IE5.5*/
+}
+#jsdialog-jobs{*top:20% !important;}
+/* 标题 */
+.jsdialog-header {
+	position: relative;
+	height:33px;
+	line-height: 33px;
+	background: url(http://www.ofweek.com/image/t_bg1.gif) no-repeat;
+}
+.jsdialog-header .title {
+	margin-left: 15px;
+	color: #fff;
+	font-weight: bold;
+	height: 33px;
+    line-height: 33px;
+    font-size: 12px;
+}
+.jsdialog-header .closer {
+	position: absolute;
+	right: 15px;
+	top: 0;
+	display: block;
+	height: 33px;
+	width: 20px;
+	overflow: hidden;
+	text-indent: -9999px;
+	background: url(/image/xx.gif) no-repeat 50% 50%;
+}
+
+/* 搜索框 */
+.jsdialog-search {
+	margin: 10px 10px 0;
+}
+.jsdialog-search .search-input {
+	display: none !important;
+	display: inline-block;
+	padding: 0 0 0 20px;
+	/* width: 110px; */
+	height: 20px;
+	overflow: hidden;
+	*zoom: 1;
+	border: 1px solid #CCC;
+	background: #fff url(/image/icon-search.png) no-repeat 5px 50%;
+	*padding-left: 10px;
+}
+.jsdialog-search .search-wd {
+	float: left;
+	width: 100px;
+	height: 20px;
+	line-height: 20px;
+	*line-height: 22px;
+	*border: 1px solid #fff;
+	border: none;
+}
+.jsdialog-search .search-wd:focus,
+.jsdialog-search .search-wd.focus {
+	color: #333;
+}
+.jsdialog-search .search-closer {
+	float: left;
+	width: 20px;
+	height: 100%;
+	outline: none;
+	background: url(/image/icon-closer-search.png) no-repeat 50% 50%;
+}
+.jsdialog-search .search-closer.active {
+	background-image: url(/image/icon-closer-active-search.png);
+}
+
+/* 错误提示 */
+.jsdialog-search .jsdialog-tips {
+	/* display: inline-block; */
+	display: none;
+	margin-left: 3px;
+	line-height: 22px;
+	color: #f00;
+	vertical-align: top;
+}
+
+/* 选中的岗位 */
+.jsdialog-selected {
+	/* display: none; */
+	margin: 0 10px;
+	overflow: hidden;
+	*zoom: 1;
+}
+.jsdialog-selected-item {
+	float: left;
+	margin: 5px 8px 0 0;
+	text-shadow: 1px 1px 0 #eee;
+	white-space: nowrap;
+	border: 1px solid #DDDDDD;
+	background: #efefef;
+}
+.jsdialog-selected-item .text {
+	float: left;
+	height: 21px;
+	line-height: 21px;
+	padding: 0 9px;
+	color: #333;
+}
+.jsdialog-selected-item .closer {
+	float: left;
+	width: 18px;
+	height: 21px;
+	line-height: 21px;
+	color: #333;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	text-decoration: none;
+	font-family: arial;
+	background-color: #D8D8D8;
+}
+.jsdialog-selected-item .closer:hover {
+	color: #fff;
+	background-color: #FF8119;
+}
+
+.jsdialog-selected-item2 {
+	float: left;
+	margin: 5px 8px 0 0;
+	text-shadow: 1px 1px 0 #eee;
+	white-space: nowrap;
+	border: 1px solid #DDDDDD;
+	background: #efefef;
+}
+.jsdialog-selected-item2 .text {
+	float: left;
+	height: 21px;
+	line-height: 21px;
+	padding: 0 9px;
+	color: #333;
+}
+.jsdialog-selected-item2 .closer {
+	float: left;
+	width: 18px;
+	height: 21px;
+	line-height: 21px;
+	color: #333;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	text-decoration: none;
+	font-family: arial;
+	background-color: #D8D8D8;
+}
+.jsdialog-selected-item2 .closer:hover {
+	color: #fff;
+	background-color: #FF8119;
+}
+
+/* 全部取消 */
+.jsdialog-selected-clear {
+	display: none;
+	float: right;
+	width: 130px;
+	color: #333;
+	line-height: 21px;
+	text-align: right;
+}
+.jsdialog-selected-clear span {
+	display: inline-block;
+	height: 21px;
+	margin-right: 4px;
+}
+.jsdialog-selected-clear a {
+	display: inline-block;
+	width: 50px;
+	height: 21px;
+	padding-left: 14px;
+	background: url(/image/icon-clear.png) no-repeat left center;
+	text-decoration: none;
+}
+.jsdialog-selected-clear a:hover {
+	color: #5593CC;
+}
+
+/* 职位列表 */
+.jsdialog-list {
+	margin: 10px;
+	padding: 10px 0 10px 10px;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+.jsdialog-list a {
+	float: left;
+	padding-left: 5px;
+	margin-right: 10px;
+	width: 180px;
+	height: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #294d9a;
+	outline: none;
+	text-decoration: none;
+	background: #fff;
+}
+.jsdialog-list a:hover {
+	color: #cb0a00;
+	text-decoration: none;
+	background-color: #E9E9E9;
+}
+.jsdialog-list a.on {
+	color: #fff;
+	background-color: #FF8B29;
+}
+.jsdialog-list a.on:hover { /* for IE6 */
+	color: #fff;
+	background-color: #FF8B29;
+}
+
+/* 次级职位列表 */
+/* TODO */
+.jsdialog-sublist {
+	position: absolute;
+	padding: 5px 0 7px 5px;
+	/*width: 400px;*/
+	/*height:150px;*/
+	border: 2px solid #FF8119;
+	background: #FFFFE5;
+	/*overflow-y: scroll;*/
+	display: none;
+	/*display: block !important;*/
+	white-space: nowrap;
+}
+.jsdialog-list .loading,
+.jsdialog-sublist .loading {
+	height: 200px;
+	background: url(/image/data-loading.gif) no-repeat 50% 50%;
+}
+.jsdialog-sublist span,
+.jsdialog-sublist-item {
+	float: left;
+	display: inline;
+	margin: 0 5px 2px 0;
+	height: 18px;
+	line-height: 18px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 78px;
+	color: #333;
+}
+.jsdialog-sublist label,
+.jsdialog-sublist-item label {
+	display: inline-block;
+	height: 18px;
+	line-height: 18px;
+	width: 78px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.gw-sublist-col {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	margin: 5px 11px 5px 1px;
+	width: 185px;
+	vertical-align: top;
+}
+.gw-sublist-product {
+	*margin-top: 4px;
+}
+.gw-sublist-title {
+	margin: 0 0 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px #FF8B29 solid;
+	font-weight: bold;
+	color: #333;
+	/*font-size: 12px;*/
+}
+.jsdialog-sublist .chooseall {
+	float: none;
+	display: block;
+	width: auto;
+	margin: 2px 5px 2px 0;
+	color: #000;
+	font-weight: bold;
+}
+.jsdialog-sublist-item-wrapper label {
+	display: block;
+	/* white-space: nowrap; */
+	/* width: 200px; */
+	/* height: 16px; */
+	 /*white-space: nowrap;*/
+}
+.jsdialog-sublist-item-wrapper label:hover {
+	background-color: #f5f5f5;
+}
+.jsdialog-sublist input,
+.jsdialog-sublist-item input {
+	margin: 0 3px 0 0;
+	width: 13px;
+	height: 13px;
+	vertical-align: -3px;
+	_vertical-align: middle;
+	outline: none;
+}
+
+/* 搜索结果 */
+.jsdialog-search-resault {
+	max-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.jsdialog-search-resault-group {
+	padding: 5px 0;
+}
+.jsdialog-search-resault-group-header {
+	margin-bottom: 2px;
+	width: 160px;
+	font-weight: bold;
+	text-align: right;
+}
+.jsdialog-search-resault-group-all {
+	float: left;
+	margin-right: 10px;
+	width: 160px;
+	height: 16px;
+	line-height: 16px;
+	padding-right: 10px;
+	background: url(/image/icon-arr.png) no-repeat 100% 3px;
+	white-space: nowrap;
+	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.jsdialog-search-resault-group-item {
+	float: left;
+	width: 380px;
+	overflow: hidden;
+}
+.jsdialog-search-resault-group-item span {
+	float: left;
+	display: inline;
+	margin: 0 10px 3px 0;
+	width: 180px;
+	height: 16px;
+	line-height: 16px;
+	color: #333;
+	background: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.jsdialog-search-resault-group-all input,
+.jsdialog-search-resault-group-item input {
+	height: 13px;
+	width: 13px;
+	margin-right: 3px;
+	vertical-align: -3px;
+	*vertical-align: top;
+}
+.jsdialog-search-resault em {/* 关键词高亮显示 */
+	color: #f00;
+	font-style: normal;
+}
+
+/* 按钮 */
+.jsdialog-footer {
+	margin: 5px 10px;
+	text-align: right;
+}
+.jsdialog-footer .button {
+	display: inline-block;
+	width: 62px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	outline: none;
+	background: url(/image/btn-jsdialog.gif) no-repeat -69px 0;
+}
+.jsdialog-footer .jsdialog-submit {
+	width: 69px;
+	background-position: 0 0;
+}
+.jsdialog-footer .button:hover {
+	text-decoration: none;
+	color: #fff;
+}
+
+/* 遮罩 */
+body {
+	/* height: 100%; */
+}
+.ui-overlay {
+	display: none;
+	position: fixed;
+	z-index:1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+	_position: absolute;
+	_top: expression(documentElement.scrollTop);
+}

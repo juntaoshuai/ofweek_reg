@@ -540,7 +540,7 @@ span.baidu-lg {
     line-height: 28px\9;
     outline: none;
     text-indent: 8px;
-    width: 100px;
+    width: 290px;
     border-radius: 2px;
     font-family: simsun, Arial;
     padding: 0;
@@ -564,6 +564,10 @@ span.baidu-lg {
 .pulldown-box .pulldown span {
     float: left;
     color: #a4a4a4;
+    width:268px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pulldown-box .pulldown i {
@@ -661,6 +665,14 @@ span.baidu-lg {
     padding-left: 20px;
 }
 
+.form-control-pulldown{
+    position: relative;
+}
+.form-control-pulldown .pass{
+    position:absolute;
+    right: -28px;
+    top:0px;
+}
 .input-tips{
     line-height: 28px;
     clear: both;

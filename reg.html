@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="http://images.ofweek.com/css/ofw-global-steven.css">
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/jsdialog.css">
 
     <body>
         <div id="header">
@@ -21,17 +22,17 @@
         <div id="content">
             <div class="greybg-box">
                 <div class="wrapper content-box clearfix">
-                    <form action="" method="post" class="fl regform">
+                    <form action="" method="post" class="fl regform" id="regForm">
                         <div class="form-group clearfix">
                             <label class="control-label">手机/邮箱：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入手机或邮箱" id="account">
+                                <input type="text" name="account" class="txt" placeholder="请输入手机或邮箱" id="account">
                             </div>
                         </div>
                         <div class="form-group clearfix dn">
                             <label class="control-label">图片验证码：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt txt162 mr10" placeholder="请填写验证码" id="img_code">
+                                <input type="text" name="img_code" class="txt txt162 mr10" placeholder="请填写验证码" id="img_code">
                                 <img src="images/validateCode.png" alt="" class="fl" id="code_img">
                                 <p class="input-tips">请输入图中字母，不区分大小写</p>
                             </div>
@@ -39,108 +40,179 @@
                         <div class="form-group clearfix">
                             <label class="control-label">验证码：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt txt162" placeholder="请填写验证码" id="validate_code">
+                                <input type="text" name="validate_code" class="txt txt162" placeholder="请填写验证码" id="validate_code">
                                 <input type="button" value="发送验证码" class="getcode" id="getcode">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label">登录密码：</label>
                             <div class="form-control">
-                                <input type="password" name="" class="txt" placeholder="支持6-20位数字、字母和标点符号" id="pwd">
+                                <input type="password" name="pwd" class="txt" placeholder="支持6-20位数字、字母和标点符号" id="pwd">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label">确认密码：</label>
                             <div class="form-control">
-                                <input type="password" name="" class="txt" placeholder="请再次输入密码" id="repwd">
+                                <input type="password" name="repwd" class="txt" placeholder="请再次输入密码" id="repwd">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label">感兴趣行业：</label>
-                            <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="您可以选择5个行业" id="interest">
+                            <div class="form-control form-control-pulldown">
+                                <div class="pulldown-box">
+                                    <div class="pulldown">
+                                        <span class="select-txt" id="jselect">您可以选择5个行业</span>
+                                        <i></i>
+                                    </div>
+                                    <input type="hidden" name="jselected" id="jselected" datatype="*" nullmsg="请选择感兴趣行业！" sucmsg="">
+                                    <input type="hidden" name="smallclass" value="987012,987006,987004,987017,987015" id="smallclass">
+                                    <input type="hidden" name="smallclass2" value="低碳技术,余压余热,碳排放交易,土壤修复,新能源汽车" id="smallclass2">
+                                </div>
                             </div>
                         </div>
                         <p class="reg-chk ml110">
-                        	<label><input type="checkbox" name=""><span>订阅 <a href="#">OFweek资讯邮件</a></span></label>
-                        	<label><input type="checkbox" name=""><span>我已阅读并接受<a href="#">《OFweek.com注册协议》</a></span></label>
+                            <label>
+                                <input type="checkbox" name="" checked="checked"><span>订阅 <a href="#">OFweek资讯邮件</a></span></label>
+                            <label>
+                                <input type="checkbox" name="" checked="checked"><span>我已阅读并接受<a href="http://www.ofweek.com/protocol.shtml" target="_blank">《OFweek.com注册协议》</a></span></label>
                         </p>
-                        <input type="submit" value="注册" class="btn-red">
+                        <input type="button" value="注册" class="btn-red">
                     </form>
                     <div class="person-service fr reg-person-service mt20">
-						<div class="service-hd clearfix">
-							<h3 class="fl">个人服务</h3>
-						</div>
-						<ul class="service-list clearfix">	
-							<li>
-								<a href="http://www.ofweek.com/" target="_blank">
-									<h4><img src="images/service2.png"></h4>
-									<p>资讯服务</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://expo.ofweek.com/ " target="_blank">
-									<h4><img src="images/service3.png"></h4>
-									<p>在线展览</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://webinar.ofweek.com/index.action?user.id=2 " target="_blank">
-								    <h4><img src="images/service1.png"></h4>
-								    <p>在线研讨会</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://hr.ofweek.com/" target="_blank">
-								    <h4><img src="images/service4.png"></h4>
-								    <p>求职</p>
-								  </a>
-							</li>
-							<li>
-								<a href="http://wenku.ofweek.com/" target="_blank">
-								    <h4><img src="images/service5.png"></h4>
-								    <p>文库</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://bbs.ofweek.com/portal.php" target="_blank">
-								    <h4><img src="images/service6.png"></h4>
-								    <p>论坛</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://research.ofweek.com/" target="_blank">
-								    <h4><img src="images/service7.png"></h4>
-								    <p>行业报告</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://www.ofweek.com/productcenter/" target="_blank">
-								    <h4><img src="images/service8.png"></h4>
-									<p>产品试用</p>
-								</a>
-							</li>
-							<li>
-								<a href="http://video.ofweek.com/" target="_blank">
-									<h4><img src="images/service9.png"></h4>
-									<p>行业视频</p>
-								</a>
-							</li>
-						</ul>
-						<dl class="common-question">
-							<dt>常见问题</dt>
-							<dd>
-								<strong>无法收到验证码：</strong>请查看下是否在手机/邮箱的垃圾
-								箱里，如没有请再点击“发送验证码”，多次尝试依
-								然无法收到验证码请联系<a href="#" class="online-service">在线客服</a>处理；
-							</dd>
-							<dd class="mt6">
-								<strong>提交时提示错误：</strong>请刷新页面后重新注册，如刷新后
-								还存在请联系<a href="#" class="online-service">在线客服</a>处理；
-						    </dd>
-						</dl>
-				    </div>
+                        <div class="service-hd clearfix">
+                            <h3 class="fl">个人服务</h3>
+                        </div>
+                        <ul class="service-list clearfix">
+                            <li>
+                                <a href="http://www.ofweek.com/" target="_blank">
+                                    <h4><img src="images/service2.png"></h4>
+                                    <p>资讯服务</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://expo.ofweek.com/ " target="_blank">
+                                    <h4><img src="images/service3.png"></h4>
+                                    <p>在线展览</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://webinar.ofweek.com/index.action?user.id=2 " target="_blank">
+                                    <h4><img src="images/service1.png"></h4>
+                                    <p>在线研讨会</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://hr.ofweek.com/" target="_blank">
+                                    <h4><img src="images/service4.png"></h4>
+                                    <p>求职</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://wenku.ofweek.com/" target="_blank">
+                                    <h4><img src="images/service5.png"></h4>
+                                    <p>文库</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://bbs.ofweek.com/portal.php" target="_blank">
+                                    <h4><img src="images/service6.png"></h4>
+                                    <p>论坛</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://research.ofweek.com/" target="_blank">
+                                    <h4><img src="images/service7.png"></h4>
+                                    <p>行业报告</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.ofweek.com/productcenter/" target="_blank">
+                                    <h4><img src="images/service8.png"></h4>
+                                    <p>产品试用</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://video.ofweek.com/" target="_blank">
+                                    <h4><img src="images/service9.png"></h4>
+                                    <p>行业视频</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <dl class="common-question">
+                            <dt>常见问题</dt>
+                            <dd>
+                                <strong>无法收到验证码：</strong>请查看下是否在手机/邮箱的垃圾 箱里，如没有请再点击“发送验证码”，多次尝试依 然无法收到验证码请联系
+                                <a href="#" class="online-service">在线客服</a>处理；
+                            </dd>
+                            <dd class="mt6">
+                                <strong>提交时提示错误：</strong>请刷新页面后重新注册，如刷新后 还存在请联系
+                                <a href="#" class="online-service">在线客服</a>处理；
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <!--感兴趣行业弹窗-->
+        <div id="jsdialog-jobs" class="jsdialog">
+            <div class="jsdialog-header">
+                <h2 class="title">选择感兴趣行业</h2>
+                <a class="closer jsdialog-closer" href="javascript:;">X</a>
+            </div>
+            <div class="jsdialog-search">
+                <!-- <span class='search-input'><input class="search-wd" value="输入行业名称" /><a href="javascript:;" class="search-closer"></a></span> -->
+                <span class="jsdialog-tips">没有您要搜索的关键词，建议重新搜索</span>
+                <!-- ###修改### -->
+                <div class="jsdialog-selected-clear">
+                    <!-- <span>已选1项</span> -->
+                    <a href="javascript:">全部取消</a>
+                </div>
+                <!-- ###修改### -->
+            </div>
+            <!-- 已选择职位 -->
+            <div class="jsdialog-selected"></div>
+            <!-- 职位列表 -->
+            <div class="jsdialog-list fn-clear">
+                <div class="loading"></div>
+                
+            </div>
+            <!-- 职位二级列表 -->
+            <div class="jsdialog-sublist">
+                <div class="loading"></div>
+               
+            </div>
+             <script id="tpl-list" type="text/html">
+  {{each list}}
+    <a class="jsdialog-list-item" data-id="{{$value.id}}" href="javascript:;">{{$value.name}}</a>
+  {{/each}}
+</script>
+
+<script id="tpl-sublist" type="text/html">
+  <div class="gw-sublist-col gw-sublist-product">
+    <h4 class="gw-sublist-title">产品/技术</h4>
+    <div class='gw-sublist-item-wrapper'>
+      {{each list}}
+      {{if $value.type === 1}}
+        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="gw-sublist-col gw-sublist-industry">
+    <h4 class="gw-sublist-title">行业</h4>
+    <div class='gw-sublist-item-wrapper'>
+      {{each list}}
+      {{if $value.type === 2}}
+        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</script>
+            <div class="jsdialog-footer">
+                <a class="button jsdialog-submit" href="javascript:;">确定</a>
+                <!--      <a class="button jsdialog-clear" href='javascript:;'>清除</a>-->
+                <a class="button jsdialog-closer" href="javascript:;">关闭</a>
             </div>
         </div>
         <div id="g-footer" class="g-footer">
@@ -220,7 +292,10 @@
             </div>
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="http://www.ofweek.com/ofweek/js/template.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/ofw-reg.js?v=20161201"></script>
+
     </body>
 
 </html>
