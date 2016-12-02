@@ -546,6 +546,9 @@ span.baidu-lg {
     padding: 0;
     position: relative;
 }
+.pulldown-box.w100{
+    width:100px;
+}
 
 .pulldown-box .pulldown {
     background: #fff;
@@ -568,6 +571,17 @@ span.baidu-lg {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.pulldown-box .pulldown span {
+    float: left;
+    color: #a4a4a4;
+    width:268px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.pulldown-box .pulldown span.w78{
+    width:78px;
 }
 
 .pulldown-box .pulldown i {

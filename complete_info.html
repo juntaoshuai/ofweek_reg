@@ -44,29 +44,36 @@
                                 <input type="text" name="mobile" class="txt" placeholder="请输入中文或英文，限20个字" id="mobile">
                             </div>
                         </div>
-                        <div class="form-group clearfix dn">
+                        <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i>邮箱：</label>
                             <div class="form-control">
                                 <input type="text" name="email" class="txt" placeholder="请输入中文或英文，限20个字" id="email">
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label class="control-label"><i class="xin">*</i> 所在行业：</label>
-                            <div class="form-control">
-                                <input type="text" name="hy" id="hy" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                            <label class="control-label">感兴趣行业：</label>
+                            <div class="form-control form-control-pulldown">
+                                <div class="pulldown-box">
+                                    <div class="pulldown">
+                                        <span class="select-txt" id="jselect">请选择</span>
+                                        <i></i>
+                                    </div>
+                                    <input type="hidden" name="jselected" id="jselected" datatype="*" nullmsg="请选择感兴趣行业！" sucmsg="">
+                                    <input type="hidden" name="smallclass" value="987012,987006,987004,987017,987015" id="smallclass">
+                                    <input type="hidden" name="smallclass2" value="低碳技术,余压余热,碳排放交易,土壤修复,新能源汽车" id="smallclass2">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i> 职位：</label>
                             <div class="form-control">
                                 <input type="text" name="" class="txt txt162 mr10" placeholder="请输入中文或英文，限20个字" id="job" name="job">
-                                <div class="pulldown-box">
+                                <div class="pulldown-box w100">
                                     <div class="pulldown">
-                                        <span class="select-txt">3-6岁</span>
+                                        <span class="select-txt w78">工作年限</span>
                                         <i></i>
                                     </div>
                                     <ul class="pulldown-list">
-                                        <li data-id="请选择">请选择</li>
                                         <li data-id="无经验">无经验</li>
                                         <li data-id="1年以下">1年以下</li>
                                         <li data-id="1-3年">1-3年</li>
@@ -132,6 +139,62 @@
                 </div>
             </div>
         </div>
+                <!--感兴趣行业弹窗-->
+        <div id="jsdialog-jobs" class="jsdialog">
+            <div class="jsdialog-header">
+                <h2 class="title">选择感兴趣行业</h2>
+                <a class="closer jsdialog-closer" href="javascript:;">X</a>
+            </div>
+            <div class="jsdialog-search">
+                <!-- <span class='search-input'><input class="search-wd" value="输入行业名称" /><a href="javascript:;" class="search-closer"></a></span> -->
+                <span class="jsdialog-tips">没有您要搜索的关键词，建议重新搜索</span>
+                <!-- ###修改### -->
+                <div class="jsdialog-selected-clear">
+                    <!-- <span>已选1项</span> -->
+                    <a href="javascript:">全部取消</a>
+                </div>
+                <!-- ###修改### -->
+            </div>
+            <!-- 已选择职位 -->
+            <div class="jsdialog-selected"></div>
+            <!-- 职位列表 -->
+            <div class="jsdialog-list fn-clear">
+                <div class="loading"></div>
+                
+            </div>
+            <!-- 职位二级列表 -->
+            <div class="jsdialog-sublist">
+                <div class="loading"></div>
+               
+            </div>
+             <script id="tpl-list" type="text/html">
+  {{each list}}
+    <a class="jsdialog-list-item" data-id="{{$value.id}}" href="javascript:;">{{$value.name}}</a>
+  {{/each}}
+</script>
+
+<script id="tpl-sublist" type="text/html">
+  <div class="gw-sublist-col gw-sublist-product">
+    <h4 class="gw-sublist-title">产品/技术</h4>
+    <div class='gw-sublist-item-wrapper'>
+      {{each list}}
+      {{if $value.type === 1}}
+        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+  <div class="gw-sublist-col gw-sublist-industry">
+    <h4 class="gw-sublist-title">行业</h4>
+    <div class='gw-sublist-item-wrapper'>
+      {{each list}}
+      {{if $value.type === 2}}
+        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+</script>
         <div id="g-footer" class="g-footer">
             <div class="g-wrap">
                 <div class="g-footer-nav">
@@ -208,8 +271,10 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
+         <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="http://www.ofweek.com/ofweek/js/template.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/ofw-reg.js?v=20161201"></script>
         <script type="text/javascript">
             var method=getUrlKey("method");
             if(method=="mobile"){

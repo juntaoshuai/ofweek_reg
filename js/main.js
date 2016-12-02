@@ -92,10 +92,10 @@ function remoteCheckMobileEmail(obj,url,msg){
 function remoteCheck(obj,url,msg){
     var objval=$(obj).val();
     $.ajax({
+            dataType:"json",
             url:url,
             data:{name:objval},
             success:function(data){
-                var data=$.parseJSON(data);
                 if(data.status=="y"){
                     noPass(msg,obj);
                 }else{
@@ -255,28 +255,6 @@ function checkInterest(obj,msg) {
     }       
 }
 
-function btnSubmit(btn){
-    $(btn).click(function(ev){
-        alert("click");
-    $(".form-control .txt").trigger("blur");
-    checkInterest("#jselect","您可以选择5个行业");
-    if($(".form-control .error").length){
-        return false;
-    }else{
-        //ajax表单提交
-        var data=$("#regForm").serialize();
-        ///registerUserUpdate.do
-        $.getJSON('js/data1.txt',data,function(data){
-            if(data.status=="y"){
-                location.href="complete_info.html";
-            }
-        });
-
-        return true;
-    }
-});
-
-}
 
 
 //全局正则配置
@@ -284,7 +262,8 @@ var RegConfig={
     'mobile':/^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/,
     'email':/^[A-Za-z0-9-_\.]+\@([A-Za-z0-9-_]+\.)+[A-Za-z0-9]{2,6}$/,
     'pwd':/^(?=[\w\W])[^*]{6,20}$/,
-    'name':/^[\u4e00-\u9fa5A-Za-z]{1,20}$/
+    'name':/^[\u4e00-\u9fa5A-Za-z]{1,20}$/,
+    'companyname':/^[\u4e00-\u9fa5A-Za-z_-()（）]{4,50}$/
 }
 
 var valiate={
@@ -317,7 +296,7 @@ var valiate={
             if(id=="pwd"){
                 if (checkEmpty($this)) {
                     noPass("请输入密码",$this);
-                }else if(!RegCheck($this,RegConfig.pwd)){
+                }else if(RegCheck($this,RegConfig.pwd)){
                     noPass("支持6-20位数字、字母和标点符号",$this);
                 }else{
                     pass($this);
@@ -333,11 +312,7 @@ var valiate={
                 }else{
                     pass($this);
                 }
-       
-
             }
-
-
         });
 
         //按钮提交 
@@ -384,8 +359,44 @@ var valiate={
 
                 }else if(checkLength($this,50)){
                     noPass("邮箱长度超过限定",$this);
+                }else{
+                    remoteCheck($this,'js/data1.json',"该邮箱已经存在，请更换");
                 }
             }
+            if(id=="mobile"){
+                if (checkEmpty($this) || !RegCheck($this,RegConfig.mobile)) {
+                    noPass("请输入正确的11位手机号码",$this);
+                }else{
+                    pass($this);                
+                }
+            }
+            if(id=="job"){
+                if (checkEmpty($this) || !RegCheck($this,RegConfig.name)) {
+                    noPass("请输入中英文，限20个字",$this);
+                }else{
+                    pass($this);                
+                }
+            }
+            if(id=="nickname"){
+                if (checkEmpty($this) || !RegCheck($this,RegConfig.name)) {
+                    noPass("请输入中英文，限20个字",$this);
+                }else{
+                    pass($this);                
+                }
+            }
+            //当用户从在线展、研讨会、直播产品进入注册时必填写
+            if(id=="company_name"){
+                if (checkEmpty($this) || !RegCheck($this,RegConfig.companyname)) {
+                    noPass("中英文、数字、_、-、（）、（ ）组成，4-50个字",$this);
+                }else{
+                    pass($this);                
+                }
+            }
+
+
+
+
+
         });
 
 
