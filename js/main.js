@@ -1,61 +1,56 @@
 jQuery(function($){
-	//下拉列表整体操作
-	var pulldown = function() {
-	 $(".pulldown").click(function() {
+    //下拉列表整体操作
+    var pulldown = function() {
+     $(".pulldown").click(function() {
 
-	   $(this).parent().css("z-index",888).find(".pulldown-list").css("z-index",888).closest(".form-item").css("z-index",888).siblings().css("z-index",1).find(".pulldown-box").css("z-index",1).find(".pulldown-list").css("z-index",1).hide();
+       $(this).parent().css("z-index",888).find(".pulldown-list").css("z-index",888).closest(".form-item").css("z-index",888).siblings().css("z-index",1).find(".pulldown-box").css("z-index",1).find(".pulldown-list").css("z-index",1).hide();
 
-	    $(this).next().toggle().css({
-	        'width':$(this).width(),
-	        'top':$(this).height()
-	   });
+        $(this).next().toggle().css({
+            'width':$(this).width(),
+            'top':$(this).height()
+       });
 
-	    return false;
-	});
+        return false;
+    });
 
-	$(".pulldown-list li").click(function() {
-	    var id = $(this).data("id");
-	    $(this).closest(".pulldown-box").find(".select-txt").html($(this).html());
-	    $(this).parent().hide();
-	    if (id) {
-	        $(this).parent().next().val(id);
-	    }else{
-	        $(this).parent().next().val($(this).html());
-	    }
-	});
+    $(".pulldown-list li").click(function() {
+        var id = $(this).data("id");
+        $(this).closest(".pulldown-box").find(".select-txt").html($(this).html());
+        $(this).parent().hide();
+        if (id) {
+            $(this).parent().next().val(id);
+        }else{
+            $(this).parent().next().val($(this).html());
+        }
+    });
 
-	$(document).click(function() {
-	    $(".pulldown-list").hide();
-	});
+    $(document).click(function() {
+        $(".pulldown-list").hide();
+    });
 
-	}
+    }
 
-	pulldown();
+    pulldown();
 
 //完善信息页面性别选中
 $(".form-control .sex").click(function(){
-	$(this).addClass("selected").siblings(".sex").removeClass("selected");
-	$("input[name=sex]").val($(this).index());
+    $(this).addClass("selected").siblings(".sex").removeClass("selected");
+    $("input[name=sex]").val($(this).index());
 });
 
-//全局正则配置
-var RegConfig={
-	'mobile':/^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/,
-	'email':/^[A-Za-z0-9-_\.]+\@([A-Za-z0-9-_]+\.)+[A-Za-z0-9]{2,6}$/,
-    'pwd':/^(?=[\w\W])[^*]{6,20}$/
-}
+
 
 
 
 //验证不通过
 function noPass(msg,obj){
-	var $msg = $('<span class="nopass"></span>');
+    var $msg = $('<span class="nopass"></span>');
     $(obj).addClass("error").siblings(".nopass,.pass,.input-tips").remove();
-	$msg.html(msg).appendTo($(obj).closest(".form-control"));
+    $msg.html(msg).appendTo($(obj).closest(".form-control"));
 }
 //验证通过
 function pass(obj){
-	var $pass = $('<span class="pass"></span>');
+    var $pass = $('<span class="pass"></span>');
     $(obj).remove("error").siblings(".nopass,.pass,.input-tips").remove();
     $pass.appendTo($(obj).closest(".form-control"));
 
@@ -83,9 +78,9 @@ function remoteCheckMobileEmail(obj,url,msg){
                 }else{
                     //输入手机时，出现图片验证码,邮箱则隐藏
                     if(RegCheck(obj,RegConfig.mobile)){
-                        $(obj).closest(".form-group").next().show();
+                        $(obj).attr("data-method","mobile").closest(".form-group").next().show();
                     }else{
-                        $(obj).closest(".form-group").next().hide();
+                        $(obj).attr("data-method","email").closest(".form-group").next().hide();
                     }
                     pass(obj);
                 }
@@ -101,8 +96,8 @@ function remoteCheck(obj,url,msg){
             data:{name:objval},
             success:function(data){
                 var data=$.parseJSON(data);
-                if(data.status==1){
-                    noPass(msg, obj);
+                if(data.status=="y"){
+                    noPass(msg,obj);
                 }else{
                     pass(obj);
                 }
@@ -120,7 +115,6 @@ function checkEmpty(obj) {
 }
 
 function checkLength(obj,len){
-
     if($.trim($(obj).val()).length>len){
         return true;
     }else{
@@ -128,57 +122,6 @@ function checkLength(obj,len){
     }
 }
 
-function checkEmpty1(obj,msg) {
-    
-   
-    if($.trim($(obj).val()) == ""){
-        noPass(msg,obj);
-        return false;
-    }else{
-        pass(obj);
-        return true;
-    }
-        
-    }
-
-function checkLength1(obj,len,msg){
-       
-    if($.trim($(obj).val()).length>len){
-       noPass(msg,obj);
-       return false;
-    }else{
-        pass(obj);
-        return true;
-    }
-}
-
-
-function checkPhoneAndEmail(obj) {
-    $(obj).blur(function() {
-        if (checkEmpty(obj)) {
-            noPass("请输入邮箱或手机",obj);
-        }else if(checkLength(obj,50)){      
-            noPass("邮箱长度超过限定",obj);
-        }else if(!(RegCheck(obj,RegConfig.email)) && !(RegCheck(obj,RegConfig.mobile))){
-            noPass("邮箱或手机格式不正确",obj);
-        }else{
-            remoteCheckMobileEmail(obj,"js/data.txt","该邮箱/手机已经存在，请更换或 <a href='#'>登录</a>");
-        }
-       
-    });
-
-}
-function checkImgCode(obj) {
-    $(obj).blur(function() {
-        if (checkEmpty(obj)) {
-            noPass("请输入验证码",obj);
-        }else{
-            remoteCheck(obj,'js/data.txt',"您输入的验证码有误");      
-        }
-       
-    });
-
-}
 
 //验证码
 //验证码倒计时
@@ -336,45 +279,165 @@ function btnSubmit(btn){
 }
 
 
-
-var valiate={
-	regform:function(){
-		//checkPhoneAndEmail("#account");
-        $("#account").blur(function(){
-        var r=checkEmpty1("#account","不能为空");
-        if(r){
-            alert("come")
-             checkLength1("#account",20,"长度太大");
-        }    
-        });
-        
-        // checkEmpty1("#account","不能为空")
-        // checkLength1("#account",20,"长度太大");
-        
-        // checkImgCode("#img_code");
-        // checkPwd("#pwd");
-        // checkRePwd("#repwd");
-        // btnSubmit("#regForm .btn-red");
-	}
+//全局正则配置
+var RegConfig={
+    'mobile':/^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/,
+    'email':/^[A-Za-z0-9-_\.]+\@([A-Za-z0-9-_]+\.)+[A-Za-z0-9]{2,6}$/,
+    'pwd':/^(?=[\w\W])[^*]{6,20}$/,
+    'name':/^[\u4e00-\u9fa5A-Za-z]{1,20}$/
 }
 
+var valiate={
+    regform:function(){
+        $("#regForm .txt").blur(function(){
+           var id=$(this).attr("id"),
+               $this=$(this);
+            //手机或邮箱验证：
+            if(id=="account"){
+                if (checkEmpty($this)) {
+                    noPass("请输入邮箱或手机",$this);
+                }else if(checkLength($this,50)){      
+                    noPass("邮箱长度超过限定",$this);
+                }else if(!(RegCheck($this,RegConfig.email)) && !(RegCheck($this,RegConfig.mobile))){
+                    noPass("邮箱或手机格式不正确",$this);
+                }else{
+                    remoteCheckMobileEmail($this,"js/data.txt","该邮箱/手机已经存在，请更换或 <a href='#'>登录</a>");
+                }
+            }
+            //图片验证码
+            if(id=="img_code"){
+                if (checkEmpty($this)) {
+                    noPass("请输入验证码",$this);
+                }else{
+                    remoteCheck($this,'js/data.txt',"您输入的验证码有误");      
+                }
+
+            }
+            //密码
+            if(id=="pwd"){
+                if (checkEmpty($this)) {
+                    noPass("请输入密码",$this);
+                }else if(!RegCheck($this,RegConfig.pwd)){
+                    noPass("支持6-20位数字、字母和标点符号",$this);
+                }else{
+                    pass($this);
+                }
+
+            }
+            //确认密码
+            if(id=="repwd"){
+                if (checkEmpty($this)) {
+                    noPass("请再次输入密码",$this);
+                }else if($("#pwd").val()!=$($this).val()){
+                    noPass("您2次输入的密码不一致",$this);
+                }else{
+                    pass($this);
+                }
+       
+
+            }
+
+
+        });
+
+        //按钮提交 
+        $("#regForm .btn-red").click(function(ev){
+            $(".form-control .txt").trigger("blur");
+            checkInterest("#jselect","您可以选择5个行业");
+            if($(".form-control .error").length){
+                return false;
+            }else{
+                //ajax表单提交
+                var data=$("#regForm").serialize();
+                ///registerUserUpdate.do
+                $.getJSON('js/data1.txt',data,function(data){
+                    if(data.status=="y"){
+                        location.href="complete_info.html?method="+$("#account").data("method");
+                    }
+                });
+
+                
+            }
+        });
+    },
+    //完善信息
+    completeForm:function(){
+        $("#completeForm .txt").blur(function(){
+            var id=$(this).attr("id"),
+               $this=$(this);
+               console.log($this);
+            //手机或邮箱验证：
+            if(id=="name"){
+                if (checkEmpty($this)) {
+                    noPass("请输入中文或英文，限20个字",$this);
+                }else if(!RegCheck($this,RegConfig.name)){
+                    noPass("请输入中文或英文，限20个字",$this);
+                }else{
+                    pass($this);
+                }   
+            }
+            if(id=="email"){
+                if (checkEmpty($this)) {
+                    noPass("请输入邮箱",$this);
+                }else if(!RegCheck($this,RegConfig.email)){
+                    noPass("邮箱格式不正确",$this);
+
+                }else if(checkLength($this,50)){
+                    noPass("邮箱长度超过限定",$this);
+                }
+            }
+        });
+
+
+
+    }
+}
+
+/* $("#regForm .txt").blur(function(){
+            var id=$(this).attr("id"),
+               $this=$(this);
+            //手机或邮箱验证：
+            if(id=="account"){
+                
+            }
+        });*/
+
+
 valiate.regform();
+valiate.completeForm();
 
 
 
 
  $(".apply-award :checkbox").click(function() {
- 	validateAwards();
+    validateAwards();
  });
 
 function getApplyAward(){
-	var awardVal=$("#apply-award input:checked").map(function(){
-	   	return $(this).val();
-	}).get().join(",");
-	$("input[name=applyAward]").val(awardVal);
+    var awardVal=$("#apply-award input:checked").map(function(){
+        return $(this).val();
+    }).get().join(",");
+    $("input[name=applyAward]").val(awardVal);
 }
 
 
 
 
+
+
+
+
 });
+
+
+
+//获取地址栏参数
+function getUrlKey(key) {
+    var reg = new RegExp("(^|&)"+ key +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r != null) {
+        return r[2];  //返回未解码的值
+    }else {
+        return null;
+    }
+}

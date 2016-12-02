@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>设置密码</title>
+    <title>完善信息</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link rel="stylesheet" type="text/css" href="http://images.ofweek.com/css/ofw-global-steven.css">
@@ -21,12 +21,12 @@
         <div id="content">
             <div class="greybg-box">
                 <div class="wrapper content-box clearfix">
-                    <form action="" method="post">
+                    <form action="" method="post" id="completeForm">
                         <h3 class="form-title">基本信息</h3>
                         <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i> 姓名：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <input type="text" name="name" class="txt" placeholder="请输入中文或英文，限20个字" id="name">
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -38,16 +38,22 @@
                                 <input type="hidden" name="sex" value="0">
                             </div>
                         </div>
-                        <div class="form-group clearfix">
+                        <div class="form-group clearfix dn">
                             <label class="control-label"><i class="xin">*</i> 手机：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <input type="text" name="mobile" class="txt" placeholder="请输入中文或英文，限20个字" id="mobile">
+                            </div>
+                        </div>
+                        <div class="form-group clearfix dn">
+                            <label class="control-label"><i class="xin">*</i>邮箱：</label>
+                            <div class="form-control">
+                                <input type="text" name="email" class="txt" placeholder="请输入中文或英文，限20个字" id="email">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i> 所在行业：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <input type="text" name="hy" id="hy" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -75,14 +81,14 @@
                         <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i> 昵称：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <input type="text" name="nickname" class="txt" placeholder="请输入中文或英文，限20个字" id="nickname">
                             </div>
                         </div>
                         <h3 class="form-title">我的名片<span>（参与研讨会、在线展会、申请样品、直播等产品必填写）</span></h3>
                         <div class="form-group clearfix">
                             <label class="control-label">企业名称：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="中英文、数字、_、-、（）、（ ）组成,4-50个字" id="newpwd">
+                                <input type="text" name="company_name" class="txt" placeholder="中英文、数字、_、-、（）、（ ）组成,4-50个字" id="company_name">
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -94,13 +100,13 @@
                         <div class="form-group clearfix">
                             <label class="control-label">电话：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入电话号码" id="newpwd">
+                                <input type="text" name="telephone" class="txt" placeholder="请输入电话号码" id="telephone">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label">所在部门：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <input type="text" name="department" class="txt" placeholder="请输入中文或英文，限20个字" id="department">
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -118,7 +124,7 @@
                         <div class="form-group clearfix">
                             <label class="control-label">详细地址：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入公司地址" id="newpwd">
+                                <input type="text" name="address" class="txt" placeholder="请输入公司地址" id="address">
                             </div>
                         </div>
                         <input type="submit" value="注册" class="btn-red">
@@ -204,6 +210,15 @@
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript">
+            var method=getUrlKey("method");
+            if(method=="mobile"){
+                $(".form-group:eq(3)").show();
+            }else{
+                $(".form-group:eq(2)").show();
+
+            }
+        </script>
     </body>
 
 </html>
