@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="http://images.ofweek.com/css/ofw-global-steven.css">
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/jsdialog.css">
 
     <body>
         <div id="header">
@@ -21,7 +22,7 @@
         <div id="content">
             <div class="greybg-box">
                 <div class="wrapper content-box clearfix">
-                    <form action="" method="post" id="completeForm">
+                    <form action="" method="post" id="completeForm" class="ml280 complete-form">
                         <h3 class="form-title">基本信息</h3>
                         <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i> 姓名：</label>
@@ -32,7 +33,7 @@
                         <div class="form-group clearfix">
                             <label class="control-label"><i class="xin">*</i> 性别：</label>
                             <div class="form-control">
-                                <span class="selected sex">男</span>
+                                <span class="selected sex mr10">男</span>
                                 <span class="sex">女</span>
                                 <!--男为0，女为1-->
                                 <input type="hidden" name="sex" value="0">
@@ -101,13 +102,28 @@
                         <div class="form-group clearfix">
                             <label class="control-label">企业性质：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <div class="pulldown-box">
+                                    <div class="pulldown">
+                                        <span class="select-txt">生产企业</span>
+                                        <i></i>
+                                    </div>
+                                    <ul class="pulldown-list">
+                                        <li data-id="无经验">生产企业</li>
+                                        <li data-id="1年以下">分销/代理</li>
+                                        <li data-id="1-3年">进出口贸易</li>
+                                        <li data-id="3-5年">科研机构</li>
+                                        <li data-id="5-10年">协会/商会</li>
+                                        <li data-id="10年以上">其它</li>
+                                    </ul>
+                                    <input type="hidden" name="workexperience" id="workexperience">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label">电话：</label>
                             <div class="form-control">
                                 <input type="text" name="telephone" class="txt" placeholder="请输入电话号码" id="telephone">
+                                <p class="telephone-tips">国家代码-区号-电话号码-分机号，<strong>如：+86-755-83279360-800</strong></p>
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -119,13 +135,314 @@
                         <div class="form-group clearfix">
                             <label class="control-label">工作性质：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <div class="pulldown-box">
+                                    <div class="pulldown">
+                                        <span class="select-txt">生产企业</span>
+                                        <i></i>
+                                    </div>
+                                    <ul class="pulldown-list">
+                                        <li>设计及开发工程</li>
+                                        <li>产品工程</li>
+                                        <li>企业管理/总负责</li>
+                                        <li>工程管理</li>
+                                        <li>生产管理</li>
+                                        <li>采购</li>
+                                        <li>测试与测量</li>
+                                        <li>行业服务/咨询顾问</li>
+                                        <li>市场及销售</li>
+                                        <li>品质保证/质量控制</li>
+                                        <li>学术/研究</li>
+                                        <li>学生</li>
+                                    </ul>
+                                    <input type="hidden" name="workexperience" id="workexperience">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="control-label">国家地区：</label>
                             <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入中文或英文，限20个字" id="newpwd">
+                                <p class="country-hd">
+                                    <label class="mr25">
+                                        <input type="radio" name="areatype" checked="checked" class="vm" value="0">
+                                        <span class="vm">中国</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="areatype" class="vm" value="1">
+                                        <span class="vm">国外</span>
+                                    </label>
+                                </p>
+                                <!--中国-->
+                                <div class="conuntry-box">
+                                    <div class="pulldown-box w140 fl">
+                                        <div class="pulldown">
+                                            <span class="select-txt w78">请选择</span>
+                                            <i></i>
+                                        </div>
+                                        <ul class="pulldown-list" id="province_list">
+                                        </ul>
+                                        <input type="hidden" name="workexperience" id="workexperience">
+                                    </div>
+                                    <div class="pulldown-box w140 fl ml10">
+                                        <div class="pulldown" id="city-pulldown">
+                                            <span class="select-txt w78">请选择</span>
+                                            <i></i>
+                                        </div>
+                                        <ul class="pulldown-list" id="city_list">
+                                        </ul>
+                                        <input type="hidden" name="workexperience" id="workexperience">
+                                    </div>
+                                </div>
+                                <!--国外-->
+                                <div class="conuntry-box dn">
+                                    <div class="pulldown-box fl">
+                                        <div class="pulldown">
+                                            <span class="select-txt">请选择</span>
+                                            <i></i>
+                                        </div>
+                                        <ul class="pulldown-list" id="province_list">
+                                            <li data-id="">请选择</li>
+                                            <li data-id="AF">Afghanistan 阿富汗</li>
+                                            <li data-id="AX">Aland Islands 奥兰群岛</li>
+                                            <li data-id="AL">Albania 阿尔巴尼亚</li>
+                                            <li data-id="DZ">Algeria 阿尔及利亚</li>
+                                            <li data-id="AS">American Samoa 美属萨摩亚</li>
+                                            <li data-id="AD">Andorra 安道尔</li>
+                                            <li data-id="AO">Angola 安哥拉</li>
+                                            <li data-id="AI">Anguilla 安圭拉</li>
+                                            <li data-id="AG">Antigua and Barbuda 安提瓜和巴布达</li>
+                                            <li data-id="AR">Argentina 阿根廷</li>
+                                            <li data-id="AM">Armenia 亚美尼亚</li>
+                                            <li data-id="AW">Aruba 阿鲁巴</li>
+                                            <li data-id="AU">Australia 澳大利亚</li>
+                                            <li data-id="AT">Austria 奥地利</li>
+                                            <li data-id="AZ">Azerbaijan 阿塞拜疆</li>
+                                            <li data-id="BS">Bahamas 巴哈马</li>
+                                            <li data-id="BH">Bahrain 巴林</li>
+                                            <li data-id="BD">Bangladesh 孟加拉国</li>
+                                            <li data-id="BB">Barbados 巴巴多斯</li>
+                                            <li data-id="BY">Belarus 白俄罗斯</li>
+                                            <li data-id="BE">Belgium 比利时</li>
+                                            <li data-id="BZ">Belize 伯利兹</li>
+                                            <li data-id="BJ">Benin 贝宁</li>
+                                            <li data-id="BM">Bermuda 百慕大</li>
+                                            <li data-id="BT">Bhutan 不丹</li>
+                                            <li data-id="BO">Bolivia 玻利维亚</li>
+                                            <li data-id="BA">Bosnia &amp; Herzegovina 波斯尼亚和黑塞哥维那</li>
+                                            <li data-id="BW">Botswana 博茨瓦纳</li>
+                                            <li data-id="BV">Bouvet Island 布维岛</li>
+                                            <li data-id="BR">Brazil 巴西</li>
+                                            <li data-id="IO">British Indian Ocean Territory 英属印度洋领地</li>
+                                            <li data-id="BN">Brunei Darussalam 文莱</li>
+                                            <li data-id="BG">Bulgaria 保加利亚</li>
+                                            <li data-id="BF">Burkina Faso 布基纳法索</li>
+                                            <li data-id="BI">Burundi 布隆迪</li>
+                                            <li data-id="KH">Cambodia 柬埔寨</li>
+                                            <li data-id="CM">Cameroon 喀麦隆</li>
+                                            <li data-id="CA">Canada 加拿大</li>
+                                            <li data-id="CV">Cape Verde 佛得角</li>
+                                            <li data-id="KY">Cayman Islands 开曼群岛</li>
+                                            <li data-id="CF">Central African Republic 中非共和国</li>
+                                            <li data-id="TD">Chad 乍得</li>
+                                            <li data-id="CL">Chile 智利</li>
+                                            <li data-id="CX">Christmas Island 圣诞岛</li>
+                                            <li data-id="CC">Cocos (Keeling) Islands 科科斯（基林）群岛</li>
+                                            <li data-id="CO">Colombia 哥伦比亚</li>
+                                            <li data-id="KM">Comoro Island 科摩罗岛</li>
+                                            <li data-id="CG">Congo 刚果</li>
+                                            <li data-id="CD">Congo, Democratic Republic of the 刚果民主共和国</li>
+                                            <li data-id="CK">Cook Islands 库克群岛</li>
+                                            <li data-id="CR">Costa Rica 哥斯达黎加</li>
+                                            <li data-id="HR">Croatia 克罗地亚</li>
+                                            <li data-id="CU">Cuba 古巴</li>
+                                            <li data-id="CY">Cyprus 塞浦路斯</li>
+                                            <li data-id="CZ">Czech Republic 捷克共和国</li>
+                                            <li data-id="KP">Democratic People's Republic of Korea 朝鲜民主主义人民共和国</li>
+                                            <li data-id="DK">Denmark 丹麦</li>
+                                            <li data-id="DJ">Djibouti 吉布提</li>
+                                            <li data-id="DM">Dominica 多米尼克</li>
+                                            <li data-id="DO">Dominican Republic 多米尼加共和国</li>
+                                            <li data-id="EC">Ecuador 厄瓜多尔</li>
+                                            <li data-id="EG">Egypt 埃及</li>
+                                            <li data-id="SV">El Salvador 萨尔瓦多</li>
+                                            <li data-id="GQ">Equatorial Guinea 赤道几内亚</li>
+                                            <li data-id="ER">Eritrea 厄立特里亚</li>
+                                            <li data-id="EE">Estonia 爱沙尼亚</li>
+                                            <li data-id="ET">Ethiopia 埃塞俄比亚</li>
+                                            <li data-id="FK">Falkland Islands 福克兰群岛</li>
+                                            <li data-id="FO">Faroe Islands 法罗群岛</li>
+                                            <li data-id="FJ">Fiji 斐济</li>
+                                            <li data-id="FI">Finland 芬兰</li>
+                                            <li data-id="FR">France 法国</li>
+                                            <li data-id="GF">French Guiana 法属圭亚那</li>
+                                            <li data-id="PF">French Polynesia 法属波利尼西亚</li>
+                                            <li data-id="TF">French Southern Territories 法国南部领土</li>
+                                            <li data-id="GA">Gabon 加蓬</li>
+                                            <li data-id="GM">Gambia 冈比亚</li>
+                                            <li data-id="GE">Georgia 格鲁吉亚</li>
+                                            <li data-id="DE">Germany 德国</li>
+                                            <li data-id="GH">Ghana 加纳</li>
+                                            <li data-id="GI">Gibraltar 直布罗陀</li>
+                                            <li data-id="GR">Greece 希腊</li>
+                                            <li data-id="GL">Greenland 格陵兰</li>
+                                            <li data-id="GD">Grenada 格林纳达</li>
+                                            <li data-id="GP">Guadeloupe 瓜德罗普岛</li>
+                                            <li data-id="GU">Guam 关岛</li>
+                                            <li data-id="GT">Guatemala 危地马拉</li>
+                                            <li data-id="GG">Guernsey 格恩西</li>
+                                            <li data-id="GN">Guinea 几内亚</li>
+                                            <li data-id="GW">Guinea-Bissau 几内亚比绍</li>
+                                            <li data-id="GY">Guyana 圭亚那</li>
+                                            <li data-id="HT">Haiti 海地</li>
+                                            <li data-id="HN">Honduras 洪都拉斯</li>
+                                            <li data-id="HU">Hungary 匈牙利</li>
+                                            <li data-id="IS">Iceland 冰岛</li>
+                                            <li data-id="IN">India 印度</li>
+                                            <li data-id="ID">Indonesia 印尼</li>
+                                            <li data-id="IR">Iran 伊朗</li>
+                                            <li data-id="IQ">Iraq 伊拉克</li>
+                                            <li data-id="IE">Ireland 爱尔兰</li>
+                                            <li data-id="IM">Isle Of Man 马恩岛</li>
+                                            <li data-id="IL">Israel 以色列</li>
+                                            <li data-id="IT">Italy 意大利</li>
+                                            <li data-id="CI">Ivory Coast 象牙海岸</li>
+                                            <li data-id="JM">Jamaica 牙买加</li>
+                                            <li data-id="JP">Japan 日本</li>
+                                            <li data-id="JE">Jersey 新泽西</li>
+                                            <li data-id="JO">Jordan 约旦</li>
+                                            <li data-id="KE">Kenya 肯尼亚</li>
+                                            <li data-id="KI">Kiribati 基里巴斯</li>
+                                            <li data-id="KW">Kuwait 科威特</li>
+                                            <li data-id="LA">Laos 老挝</li>
+                                            <li data-id="LV">Latvia 拉脱维亚</li>
+                                            <li data-id="LB">Lebanon 黎巴嫩</li>
+                                            <li data-id="LS">Lesotho 莱索托</li>
+                                            <li data-id="LR">Liberia 利比里亚</li>
+                                            <li data-id="LY">Libya 利比亚</li>
+                                            <li data-id="LI">Liechtenstein 列支敦士登</li>
+                                            <li data-id="LT">Lithuania 立陶宛</li>
+                                            <li data-id="LU">Luxembourg 卢森堡</li>
+                                            <li data-id="MK">The Republic of Macedonia 马其顿共和国</li>
+                                            <li data-id="MG">Madagascar 马达加斯加</li>
+                                            <li data-id="MW">Malawi 马拉维</li>
+                                            <li data-id="MY">Malaysia 马来西亚</li>
+                                            <li data-id="MV">Maldives 马尔代夫</li>
+                                            <li data-id="ML">Mali 马里</li>
+                                            <li data-id="MT">Malta 马耳他</li>
+                                            <li data-id="MH">Marshall Island 马绍尔群岛</li>
+                                            <li data-id="MQ">Martinique 马提尼克</li>
+                                            <li data-id="MR">Mauritania 毛里塔尼亚</li>
+                                            <li data-id="MU">Mauritius 毛里求斯</li>
+                                            <li data-id="YT">Mayotte 马约特岛</li>
+                                            <li data-id="MX">Mexico 墨西哥</li>
+                                            <li data-id="FM">Micronesia 密克罗尼西亚</li>
+                                            <li data-id="MD">Moldova 摩尔多瓦</li>
+                                            <li data-id="MC">Monaco 摩纳哥</li>
+                                            <li data-id="MN">Mongolia 蒙古</li>
+                                            <li data-id="ME">Montenegro 黑山</li>
+                                            <li data-id="MS">Montserrat 蒙特塞拉特</li>
+                                            <li data-id="MA">Morocco 摩洛哥</li>
+                                            <li data-id="MZ">Mozambique 莫桑比克</li>
+                                            <li data-id="MM">Myanmar 缅甸</li>
+                                            <li data-id="NA">Namibia 纳米比亚</li>
+                                            <li data-id="NR">Nauru 瑙鲁</li>
+                                            <li data-id="NP">Nepal 尼泊尔</li>
+                                            <li data-id="NL">Netherlands 荷兰</li>
+                                            <li data-id="NC">New Caledonia 新喀里多尼亚</li>
+                                            <li data-id="NZ">New Zealand 新西兰</li>
+                                            <li data-id="NI">Nicaragua 尼加拉瓜</li>
+                                            <li data-id="NE">Niger 尼日尔</li>
+                                            <li data-id="NG">Nigeria 尼日利亚</li>
+                                            <li data-id="NU">Niue 纽埃</li>
+                                            <li data-id="NF">Norfolk Island 诺福克岛</li>
+                                            <li data-id="MP">Northern Mariana Islands 北马里亚纳群岛</li>
+                                            <li data-id="NO">Norway 挪威</li>
+                                            <li data-id="OM">Oman 阿曼</li>
+                                            <li data-id="PK">Pakistan 巴基斯坦</li>
+                                            <li data-id="PW">Palau 帕劳</li>
+                                            <li data-id="PS">Palestine 巴勒斯坦</li>
+                                            <li data-id="PA">Panama 巴拿马</li>
+                                            <li data-id="PG">Papua New Guinea 巴布亚新几内亚</li>
+                                            <li data-id="PY">Paraguay 巴拉圭</li>
+                                            <li data-id="PE">Peru 秘鲁</li>
+                                            <li data-id="PH">Philippines 菲律宾</li>
+                                            <li data-id="PN">Pitcairn 皮特凯恩</li>
+                                            <li data-id="PL">Poland 波兰</li>
+                                            <li data-id="PT">Portugal 葡萄牙</li>
+                                            <li data-id="PR">Puerto Rico 波多黎各</li>
+                                            <li data-id="QA">Qatar 卡塔尔</li>
+                                            <li data-id="KZ">Republic of Kazakhstan 哈萨克斯坦共和国</li>
+                                            <li data-id="KG">Republic of Kyrgyzstan 吉尔吉斯斯坦共和国</li>
+                                            <li data-id="RO">Romania 罗马尼亚</li>
+                                            <li data-id="RU">Russian Federation 俄罗斯联邦</li>
+                                            <li data-id="RW">Rwanda 卢旺达</li>
+                                            <li data-id="BL">Saint Barthelemy 圣巴泰勒米</li>
+                                            <li data-id="MF">Saint Martin 圣马丁</li>
+                                            <li data-id="SM">San Marino 圣马力诺</li>
+                                            <li data-id="ST">Sao Tome and Principe 圣多美和普林西比</li>
+                                            <li data-id="SA">Saudi Arabia 沙特阿拉伯</li>
+                                            <li data-id="SN">Senegal 塞内加尔</li>
+                                            <li data-id="RS">Serbia 塞尔维亚</li>
+                                            <li data-id="SC">Seychelle 塞舌尔</li>
+                                            <li data-id="SL">Sierra Leone 塞拉利昂</li>
+                                            <li data-id="SG">Singapore 新加坡</li>
+                                            <li data-id="SK">Slovakia 斯洛伐克</li>
+                                            <li data-id="SI">Slovenia 斯洛文尼亚</li>
+                                            <li data-id="SB">Solomon Islands 所罗门群岛</li>
+                                            <li data-id="SO">Somalia 索马里</li>
+                                            <li data-id="ZA">South Africa 南非</li>
+                                            <li data-id="GS">South Georgia And The South Sandwich Islands 南乔治亚岛和南桑威奇群岛</li>
+                                            <li data-id="KR">South Korea 韩国</li>
+                                            <li data-id="ES">Spain 西班牙</li>
+                                            <li data-id="LK">Sri Lanka 斯里兰卡</li>
+                                            <li data-id="LC">St Lucia 圣露西亚</li>
+                                            <li data-id="KN">St. Christopher (St. Kitts) - Nevis 圣克里斯托弗（圣基茨） - 尼维斯</li>
+                                            <li data-id="SH">St. Helena 圣赫勒拿</li>
+                                            <li data-id="PM">St. Pierre and Miquelon 圣皮埃尔和密克隆</li>
+                                            <li data-id="VC">St. Vincent and The Grenadines 圣文森特和格林纳丁斯</li>
+                                            <li data-id="SD">Sudan 苏丹</li>
+                                            <li data-id="SR">Surinam 苏里南</li>
+                                            <li data-id="SJ">Svalbard and Jan Mayen 斯瓦尔巴岛和扬马延岛</li>
+                                            <li data-id="SZ">Swaziland 斯威士兰</li>
+                                            <li data-id="SE">Sweden 瑞典</li>
+                                            <li data-id="CH">Switzerland 瑞士</li>
+                                            <li data-id="SY">Syrian Arab Republic 叙利亚</li>
+                                            <li data-id="TW">Taiwan 台湾</li>
+                                            <li data-id="TJ">Tajikistan 塔吉克斯坦</li>
+                                            <li data-id="TZ">Tanzania 坦桑尼亚</li>
+                                            <li data-id="TH">Thailand 泰国</li>
+                                            <li data-id="TL">Timor-Leste 东帝汶</li>
+                                            <li data-id="TG">Togo 多哥</li>
+                                            <li data-id="TK">Tokelau 托克劳</li>
+                                            <li data-id="TO">Tonga Islands 汤加群岛</li>
+                                            <li data-id="TT">Trinidad &amp; Tobago 特里尼达和多巴哥</li>
+                                            <li data-id="TN">Tunisia 突尼斯</li>
+                                            <li data-id="TR">Turkey 土耳其</li>
+                                            <li data-id="TM">Turkmenistan 土库曼斯坦</li>
+                                            <li data-id="TC">Turks and Caicos Islands 特克斯和凯科斯群岛</li>
+                                            <li data-id="TV">Tuvalu 图瓦卢</li>
+                                            <li data-id="UG">Uganda 乌干达</li>
+                                            <li data-id="UA">Ukraine 乌克兰</li>
+                                            <li data-id="AE">United Arab Emirates 阿拉伯联合酋长国</li>
+                                            <li data-id="GB">United Kingdom 英国</li>
+                                            <li data-id="US">United States 美国</li>
+                                            <li data-id="UY">Uruguay 乌拉圭</li>
+                                            <li data-id="UZ">Uzbekistan 乌兹别克斯坦</li>
+                                            <li data-id="VU">Vanuatu 瓦努阿图</li>
+                                            <li data-id="VA">Vatican City State 梵蒂冈城国</li>
+                                            <li data-id="VE">Venezuela 委内瑞拉</li>
+                                            <li data-id="VN">Vietnam 越南</li>
+                                            <li data-id="VG">Virgin Islands, British 英属维尔京群岛</li>
+                                            <li data-id="VI">Virgin Islands, U.S. 美国维尔京群岛</li>
+                                            <li data-id="WF">Wallis and Futuna Islands 瓦利斯群岛和富图纳群岛</li>
+                                            <li data-id="EH">Western Sahara 西撒哈拉</li>
+                                            <li data-id="WS">Western Samoa 西萨摩亚</li>
+                                            <li data-id="YE">Yemen 也门</li>
+                                            <li data-id="ZM">Zambia 赞比亚</li>
+                                            <li data-id="ZW">Zimbabwe 津巴布韦</li>
+                                        </ul>
+                                        <input type="hidden" name="workexperience" id="workexperience">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -134,12 +451,12 @@
                                 <input type="text" name="address" class="txt" placeholder="请输入公司地址" id="address">
                             </div>
                         </div>
-                        <input type="submit" value="注册" class="btn-red">
+                        <input type="submit" value="保存" class="btn-red">
                     </form>
                 </div>
             </div>
         </div>
-                <!--感兴趣行业弹窗-->
+        <!--感兴趣行业弹窗-->
         <div id="jsdialog-jobs" class="jsdialog">
             <div class="jsdialog-header">
                 <h2 class="title">选择感兴趣行业</h2>
@@ -160,130 +477,120 @@
             <!-- 职位列表 -->
             <div class="jsdialog-list fn-clear">
                 <div class="loading"></div>
-                
             </div>
             <!-- 职位二级列表 -->
             <div class="jsdialog-sublist">
                 <div class="loading"></div>
-               
             </div>
-             <script id="tpl-list" type="text/html">
-  {{each list}}
-    <a class="jsdialog-list-item" data-id="{{$value.id}}" href="javascript:;">{{$value.name}}</a>
-  {{/each}}
-</script>
-
-<script id="tpl-sublist" type="text/html">
-  <div class="gw-sublist-col gw-sublist-product">
-    <h4 class="gw-sublist-title">产品/技术</h4>
-    <div class='gw-sublist-item-wrapper'>
-      {{each list}}
-      {{if $value.type === 1}}
-        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span>
-      {{/if}}
-      {{/each}}
-    </div>
-  </div>
-  <div class="gw-sublist-col gw-sublist-industry">
-    <h4 class="gw-sublist-title">行业</h4>
-    <div class='gw-sublist-item-wrapper'>
-      {{each list}}
-      {{if $value.type === 2}}
-        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span>
-      {{/if}}
-      {{/each}}
-    </div>
-  </div>
-</script>
-        <div id="g-footer" class="g-footer">
-            <div class="g-wrap">
-                <div class="g-footer-nav">
-                    <a target="_blank" href="http://www.ofweek.com/about.shtml" rel="nofollow">关于我们</a> -
-                    <a target="_blank" href="http://www.ofweek.com/abouten/company.html" rel="nofollow">About OFweek</a> -
-                    <a target="_blank" href="http://www.ofweek.com/user/ArtRequest.do" rel="nofollow">征 稿</a> -
-                    <a target="_blank" href="http://www.ofweek.com/ad.shtml" rel="nofollow">广告咨询</a> -
-                    <a target="_blank" href="http://www.ofweek.com/help.shtml" rel="nofollow">帮助信息</a> -
-                    <a target="_blank" href="http://www.ofweek.com/contact.shtml" rel="nofollow">联系我们</a> -
-                    <a target="_blank" href="http://www.ofweek.com/service.shtml" rel="nofollow">会员服务</a> -
-                    <a target="_blank" href="http://www.ofweek.com/sitemap.shtml" rel="nofollow">网站导航</a> -
-                    <a target="_blank" href="http://m.ofweek.com" rel="nofollow">手机OFweek网</a>
+            <script id="tpl-list" type="text/html">
+                {{each list}}
+                <a class="jsdialog-list-item" data-id="{{$value.id}}" href="javascript:;">{{$value.name}}</a> {{/each}}
+            </script>
+            <script id="tpl-sublist" type="text/html">
+                <div class="gw-sublist-col gw-sublist-product">
+                    <h4 class="gw-sublist-title">产品/技术</h4>
+                    <div class='gw-sublist-item-wrapper'>
+                        {{each list}} {{if $value.type === 1}}
+                        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span> {{/if}} {{/each}}
+                    </div>
                 </div>
-                <div class="g-footer-links">
-                    我们的网站：<a target="_blank" href="http://lights.ofweek.com" rel="nofollow">半导体照明网</a> |
-                    <a rel="nofollow" href="http://solar.ofweek.com" target="_blank">太阳能光伏网</a> |
-                    <a target="_blank" href="http://laser.ofweek.com" rel="nofollow">激光网</a> |
-                    <a rel="nofollow" href="http://3dprint.ofweek.com" target="_blank">3D打印网</a> |
-                    <a rel="nofollow" href="http://power.ofweek.com" target="_blank">电力网</a> |
-                    <a rel="nofollow" href="http://smartgrids.ofweek.com" target="_blank">智能电网</a> |
-                    <a rel="nofollow" href="http://ecep.ofweek.com" target="_blank">节能环保网</a> |
-                    <a target="_blank" href="http://ee.ofweek.com" rel="nofollow">电子工程网</a> |
-                    <a rel="nofollow" href="http://vr.ofweek.com" target="_blank">VR网</a> |
-                    <a rel="nofollow" href="http://fiber.ofweek.com" target="_blank">光通讯网</a> |
-                    <a target="_blank" href="http://gongkong.ofweek.com" rel="nofollow">工控网</a> |
-                    <a target="_blank" href="http://lighting.ofweek.com" rel="nofollow">照明网</a> |
-                    <a target="_blank" href="http://windpower.ofweek.com" rel="nofollow">风电网</a>
-                    <br>
-                    <a target="_blank" href="http://instrument.ofweek.com" rel="nofollow">仪器仪表网</a> |
-                    <a target="_blank" href="http://display.ofweek.com" rel="nofollow">显示网</a> |
-                    <a target="_blank" href="http://tele.ofweek.com" rel="nofollow">通信网</a> |
-                    <a target="_blank" href="http://robot.ofweek.com" rel="nofollow">机器人网</a> |
-                    <a target="_blank" href="http://libattery.ofweek.com" rel="nofollow">锂电网</a> |
-                    <a target="_blank" href="http://iot.ofweek.com" rel="nofollow">物联网</a> |
-                    <a target="_blank" href="http://smarthome.ofweek.com" rel="nofollow">智能家居</a> |
-                    <a target="_blank" href="http://wearable.ofweek.com" rel="nofollow">可穿戴设备网</a> |
-                    <a target="_blank" href="http://auto.ofweek.com" rel="nofollow">汽车网</a> |
-                    <a target="_blank" href="http://nev.ofweek.com" rel="nofollow">新能源汽车网</a> |
-                    <a target="_blank" href="http://medical.ofweek.com" rel="nofollow">医疗网</a> |
-                    <a target="_blank" href="http://security.ofweek.com" rel="nofollow">安防网</a> |
-                    <a target="_blank" href="http://sensor.ofweek.com" rel="nofollow">传感器网</a> |
-                    <a rel="nofollow" href="http://hr.ofweek.com" target="_blank">人才网</a> |
-                    <a href="http://b2b.ofweek.com/" target="_blank" rel="nofollow">商贸网</a> |
-                    <a href="http://en.ofweek.com/" target="_blank" rel="nofollow">外贸网</a> |
-                    <a href="http://peixun.ofweek.com/" target="_blank" rel="nofollow">培训网</a>|
-                    <a href="http://www.isweek.cn" target="_blank" rel="nofollow">工采网</a>
-                    <br> 客服热线：+86-755-83279360 83279361 83279363 83279365 客服传真：+86-755-83279008
-                    <br> 业务联系：+86-755-83279360
-                    <br>
-                    <a target="_blank" href="http://www.miitbeian.gov.cn" rel="nofollow">粤ICP备06087881号-1</a>&nbsp;Copyright © 2016, All Rights Reserved.
-                    <br> 中文版权所有－OFweek中国高科技行业门户.网站所有图片、文字未经许可不得拷贝、复制。
+                <div class="gw-sublist-col gw-sublist-industry">
+                    <h4 class="gw-sublist-title">行业</h4>
+                    <div class='gw-sublist-item-wrapper'>
+                        {{each list}} {{if $value.type === 2}}
+                        <span class="gw-sublist-item"><label for="cbx-{{$value.id}}" title="{{$value.name}}"><input type="checkbox" value="{{$value.id}}" id="cbx-{{$value.id}}">{{$value.name}}</label></span> {{/if}} {{/each}}
+                    </div>
                 </div>
-                <div class="g-footer-record">
-                    <p>
-                        <span class="fn-fl"><a href="http://61.144.227.239:9002/" target="_blank" rel="nofollow"><img width="36" height="43" border="0" alt="深圳网络警察报警平台" src="http://img1.qq.com/www/pics/816/816587.gif"></a></span>
-                        <span class="fn-fr"><a href="http://61.144.227.239:9002/" target="_blank" rel="nofollow">深圳网络警<br>
+            </script>
+            <div id="g-footer" class="g-footer">
+                <div class="g-wrap">
+                    <div class="g-footer-nav">
+                        <a target="_blank" href="http://www.ofweek.com/about.shtml" rel="nofollow">关于我们</a> -
+                        <a target="_blank" href="http://www.ofweek.com/abouten/company.html" rel="nofollow">About OFweek</a> -
+                        <a target="_blank" href="http://www.ofweek.com/user/ArtRequest.do" rel="nofollow">征 稿</a> -
+                        <a target="_blank" href="http://www.ofweek.com/ad.shtml" rel="nofollow">广告咨询</a> -
+                        <a target="_blank" href="http://www.ofweek.com/help.shtml" rel="nofollow">帮助信息</a> -
+                        <a target="_blank" href="http://www.ofweek.com/contact.shtml" rel="nofollow">联系我们</a> -
+                        <a target="_blank" href="http://www.ofweek.com/service.shtml" rel="nofollow">会员服务</a> -
+                        <a target="_blank" href="http://www.ofweek.com/sitemap.shtml" rel="nofollow">网站导航</a> -
+                        <a target="_blank" href="http://m.ofweek.com" rel="nofollow">手机OFweek网</a>
+                    </div>
+                    <div class="g-footer-links">
+                        我们的网站：<a target="_blank" href="http://lights.ofweek.com" rel="nofollow">半导体照明网</a> |
+                        <a rel="nofollow" href="http://solar.ofweek.com" target="_blank">太阳能光伏网</a> |
+                        <a target="_blank" href="http://laser.ofweek.com" rel="nofollow">激光网</a> |
+                        <a rel="nofollow" href="http://3dprint.ofweek.com" target="_blank">3D打印网</a> |
+                        <a rel="nofollow" href="http://power.ofweek.com" target="_blank">电力网</a> |
+                        <a rel="nofollow" href="http://smartgrids.ofweek.com" target="_blank">智能电网</a> |
+                        <a rel="nofollow" href="http://ecep.ofweek.com" target="_blank">节能环保网</a> |
+                        <a target="_blank" href="http://ee.ofweek.com" rel="nofollow">电子工程网</a> |
+                        <a rel="nofollow" href="http://vr.ofweek.com" target="_blank">VR网</a> |
+                        <a rel="nofollow" href="http://fiber.ofweek.com" target="_blank">光通讯网</a> |
+                        <a target="_blank" href="http://gongkong.ofweek.com" rel="nofollow">工控网</a> |
+                        <a target="_blank" href="http://lighting.ofweek.com" rel="nofollow">照明网</a> |
+                        <a target="_blank" href="http://windpower.ofweek.com" rel="nofollow">风电网</a>
+                        <br>
+                        <a target="_blank" href="http://instrument.ofweek.com" rel="nofollow">仪器仪表网</a> |
+                        <a target="_blank" href="http://display.ofweek.com" rel="nofollow">显示网</a> |
+                        <a target="_blank" href="http://tele.ofweek.com" rel="nofollow">通信网</a> |
+                        <a target="_blank" href="http://robot.ofweek.com" rel="nofollow">机器人网</a> |
+                        <a target="_blank" href="http://libattery.ofweek.com" rel="nofollow">锂电网</a> |
+                        <a target="_blank" href="http://iot.ofweek.com" rel="nofollow">物联网</a> |
+                        <a target="_blank" href="http://smarthome.ofweek.com" rel="nofollow">智能家居</a> |
+                        <a target="_blank" href="http://wearable.ofweek.com" rel="nofollow">可穿戴设备网</a> |
+                        <a target="_blank" href="http://auto.ofweek.com" rel="nofollow">汽车网</a> |
+                        <a target="_blank" href="http://nev.ofweek.com" rel="nofollow">新能源汽车网</a> |
+                        <a target="_blank" href="http://medical.ofweek.com" rel="nofollow">医疗网</a> |
+                        <a target="_blank" href="http://security.ofweek.com" rel="nofollow">安防网</a> |
+                        <a target="_blank" href="http://sensor.ofweek.com" rel="nofollow">传感器网</a> |
+                        <a rel="nofollow" href="http://hr.ofweek.com" target="_blank">人才网</a> |
+                        <a href="http://b2b.ofweek.com/" target="_blank" rel="nofollow">商贸网</a> |
+                        <a href="http://en.ofweek.com/" target="_blank" rel="nofollow">外贸网</a> |
+                        <a href="http://peixun.ofweek.com/" target="_blank" rel="nofollow">培训网</a>|
+                        <a href="http://www.isweek.cn" target="_blank" rel="nofollow">工采网</a>
+                        <br> 客服热线：+86-755-83279360 83279361 83279363 83279365 客服传真：+86-755-83279008
+                        <br> 业务联系：+86-755-83279360
+                        <br>
+                        <a target="_blank" href="http://www.miitbeian.gov.cn" rel="nofollow">粤ICP备06087881号-1</a>&nbsp;Copyright © 2016, All Rights Reserved.
+                        <br> 中文版权所有－OFweek中国高科技行业门户.网站所有图片、文字未经许可不得拷贝、复制。
+                    </div>
+                    <div class="g-footer-record">
+                        <p>
+                            <span class="fn-fl"><a href="http://61.144.227.239:9002/" target="_blank" rel="nofollow"><img width="36" height="43" border="0" alt="深圳网络警察报警平台" src="http://img1.qq.com/www/pics/816/816587.gif"></a></span>
+                            <span class="fn-fr"><a href="http://61.144.227.239:9002/" target="_blank" rel="nofollow">深圳网络警<br>
         察报警平台</a></span>
-                    </p>
-                    <p>
-                        <span class="fn-fl"><a href="http://61.144.227.239:9003/webrecord/form_query.jsp" target="_blank" rel="nofollow"><img width="36" height="42" border="0" alt="公共信息安全网络监察" src="http://img1.qq.com/www/pics/6743/6743671.jpg"></a></span>
-                        <span class="fn-fr"><a href="http://61.144.227.239:9003/webrecord/form_query.jsp" target="_blank" rel="nofollow">公共信息安<br>
+                        </p>
+                        <p>
+                            <span class="fn-fl"><a href="http://61.144.227.239:9003/webrecord/form_query.jsp" target="_blank" rel="nofollow"><img width="36" height="42" border="0" alt="公共信息安全网络监察" src="http://img1.qq.com/www/pics/6743/6743671.jpg"></a></span>
+                            <span class="fn-fr"><a href="http://61.144.227.239:9003/webrecord/form_query.jsp" target="_blank" rel="nofollow">公共信息安<br>
         全网络监察</a></span>
-                    </p>
-                    <p>
-                        <span style="width:44px;" class="fn-fl"><a href="http://www.12377.cn/" target="_blank" rel="nofollow"><img width="44" height="44" border="0" alt="不良信息举报中心" src="http://mat1.qq.com/www/images/200709/home_b.gif"></a></span>
-                        <span style="width:64px;" class="fn-fr"><a class="lcblack" href="http://www.12377.cn/" target="_blank" rel="nofollow">不良信息<br>
+                        </p>
+                        <p>
+                            <span style="width:44px;" class="fn-fl"><a href="http://www.12377.cn/" target="_blank" rel="nofollow"><img width="44" height="44" border="0" alt="不良信息举报中心" src="http://mat1.qq.com/www/images/200709/home_b.gif"></a></span>
+                            <span style="width:64px;" class="fn-fr"><a class="lcblack" href="http://www.12377.cn/" target="_blank" rel="nofollow">不良信息<br>
         举报中心</a></span>
-                    </p>
-                    <p style="border:none;">
-                        <script id="ebsgovicon" src="http://szcert.ebs.org.cn/govicon.js?id=9822308f-c3cf-4c02-851d-6bac920e6898&amp;width=120&amp;height=50&amp;type=2" type="text/javascript" charset="utf-8"></script>
-                        <a href="http://szcert.ebs.org.cn/9822308f-c3cf-4c02-851d-6bac920e6898" target="_blank"><img src="http://szcert.ebs.org.cn/Images/newGovIcon.gif" title="深圳市市场监督管理局企业主体身份公示" alt="深圳市市场监督管理局企业主体身份公示" width="120" height="50" border="0" style="border-width:0px;border:hidden; border:none;"></a>
-                        <script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
-                    </p>
+                        </p>
+                        <p style="border:none;">
+                            <script id="ebsgovicon" src="http://szcert.ebs.org.cn/govicon.js?id=9822308f-c3cf-4c02-851d-6bac920e6898&amp;width=120&amp;height=50&amp;type=2" type="text/javascript" charset="utf-8"></script>
+                            <a href="http://szcert.ebs.org.cn/9822308f-c3cf-4c02-851d-6bac920e6898" target="_blank"><img src="http://szcert.ebs.org.cn/Images/newGovIcon.gif" title="深圳市市场监督管理局企业主体身份公示" alt="深圳市市场监督管理局企业主体身份公示" width="120" height="50" border="0" style="border-width:0px;border:hidden; border:none;"></a>
+                            <script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="http://www.ofweek.com/ofweek/js/template.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/ofw-reg.js?v=20161201"></script>
-        <script type="text/javascript">
-            var method=getUrlKey("method");
-            if(method=="mobile"){
-                $(".form-group:eq(3)").show();
-            }else{
-                $(".form-group:eq(2)").show();
-
-            }
-        </script>
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+            <script type="text/javascript" src="http://www.ofweek.com/ofweek/js/template.js"></script>
+            <script type="text/javascript" src="js/city-data.js"></script>
+            <script type="text/javascript" src="js/main.js"></script>
+            <script type="text/javascript" src="js/emailTips.min.js"></script>
+            <script type="text/javascript" src="js/ofw-reg.js"></script>
+            <script type="text/javascript">
+            $(function(){
+                $.job1001EmailTips({
+                    'email':{className:'email-tips-list'}
+                }); 
+            })
+            </script>
     </body>
 
 </html>

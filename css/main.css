@@ -5,7 +5,9 @@ body {
     color: #666;
     background: #fff;
 }
-
+.clear{
+    clear: both;
+}
 .mt6 {
     margin-top: 6px;
 }
@@ -17,7 +19,7 @@ body {
 .mb23 {
     margin-bottom: 23px;
 }
-
+.ml280{margin-left: 280px;}
 
 /*通用链接*/
 
@@ -121,6 +123,7 @@ html.login #header {
 .login-form-group {
     border: 1px solid #bdbdbd;
     height: 38px;
+    position: relative;
 }
 
 .login-form-group label {
@@ -138,6 +141,7 @@ html.login #header {
     no-repeat;
     display: inline-block;
     line-height: 38px;
+    margin-top: 10px;
 }
 
 .login-form-group .ico-accout {
@@ -154,14 +158,26 @@ html.login #header {
 .login-form-group input {
     border: none;
     float: left;
-    height: 100%;
+    height:38px;
     line-height: 38px\9;
     padding: 0 12px;
     width: 240px;
+    background: #fff;
+}
+.login-content .login-message{
+     font-size: 12px;
+    line-height:14px;
+    color:#ca0000;
+    background:url(../images/ico_info.png) 0 0 no-repeat;
+    height: 14px;
+    clear: both;
+    padding:0 0 0 20px;
+    margin-top: 6px;
 }
 
 .login-content form .btn-red {
     width: 305px;
+    height: 52px;
     font-family: microsoft Yahei;
     font-size: 24px;
     color: #fff;
@@ -320,6 +336,10 @@ span.baidu-lg {
     font: 18px/36px microsoft Yahei;
     color: #333;
 }
+.form-title span{
+    font:12px/12px simsun;
+    color:#666;
+}
 
 .form-group {
     margin: 18px 0;
@@ -431,6 +451,7 @@ span.baidu-lg {
 }
 
 
+
 /*reg*/
 
 .reg-chk {
@@ -511,9 +532,9 @@ span.baidu-lg {
 }
 
 .form-control .sex {
-    display: inline-block;
     width: 138px;
     height: 28px;
+    float: left;
     border: 1px solid #d7d7d7;
     font-size: 12px;
     line-height: 28px;
@@ -548,6 +569,9 @@ span.baidu-lg {
 }
 .pulldown-box.w100{
     width:100px;
+}
+.pulldown-box.w140{
+    width:140px;
 }
 
 .pulldown-box .pulldown {
@@ -603,7 +627,7 @@ span.baidu-lg {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #ccc;
     display: none;
-    left: -1px;
+    left: 0;
     position: absolute;
     top: 27px;
     width: 228px;
@@ -617,11 +641,18 @@ span.baidu-lg {
     cursor: pointer;
     font-size: 12px;
     line-height: 24px;
+    height: 24px;
     padding: 0 7px;
+    overflow: hidden;
 }
+
 
 .pulldown-box .pulldown-list li:hover {
     background: #ccc none repeat scroll 0 0;
+}
+/*找回密码*/
+.find-pwd-box{
+    padding:48px 0 0 250px;
 }
 .find-pwd-tab{
     width:290px;
@@ -667,7 +698,9 @@ span.baidu-lg {
     clear: both;
     padding:0 0 0 20px;
     margin-top: 35px;
+    *margin-top: 5px;
 }
+
 
 .pass{
     float: left;
@@ -690,4 +723,30 @@ span.baidu-lg {
 .input-tips{
     line-height: 28px;
     clear: both;
+}
+
+.complete-form{
+    padding-bottom: 39px;
+}
+
+.telephone-tips{
+    line-height: 30px;
+    font-size: 12px;
+    color:#666;
+    clear: both;
+}
+.telephone-tips strong{
+    color:#ca0000;
+}
+
+/*邮箱后缀列表*/
+.email-tips-list{width:288px; background:#fff; border:1px solid #cbcbcb;font-family: arial; position:absolute;top:29px; left:0; z-index:10;color:#999;}
+.email-tips-list p{padding:5px 4px; height:14px;line-height: 14px; overflow:hidden;}
+.email-tips-list li{padding:5px 4px; height:14px;line-height: 14px; cursor:pointer;}
+.email-tips-list li.active{ background:#F3F3F3;}
+
+.login-form-group .email-tips-list{
+    width: 264px;
+    top: 38px;
+    left: 38px;
 }

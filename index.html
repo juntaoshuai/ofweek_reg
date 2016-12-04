@@ -12,8 +12,7 @@
 <body>
 <div id="header">
 	<div class="wrapper">
-		<div class="logo fl"><img src="images/logo.png"></div>
-		<h1 class="fl">个人会员注册</h1>
+		<div class="logo"><img src="images/logo.png"></div>
 	</div>
 </div>
 <div id="content">
@@ -21,17 +20,22 @@
 		<div class="wrapper clearfix">
 		    <div class="login-content-bg">
 		   		<div class="login-content">
-		   			<form action="#">
+		   			<form action="/user/login.do" id="loginForm" method="post">
 		   		  		<h3>个人登录</h3>
-		   				<div class="login-form-item clearfix">
+		   		  		<!--服务端验证不通过时显示-->
+		   		  		<p class="login-message mb10">您输入的帐号密码不正确</p>
+		   				<div class="login-form-group clearfix">
 		   					<label><i class="ico-accout"></i></label>
-		   					<input type="text" name="" placeholder="请输入用户名/邮箱/手机">
+		   					<input type="text" name="userid" id="username" placeholder="请输入用户名/邮箱/手机">
 		   				</div>
-		   				<div class="login-form-item clearfix mt35">
+		   				<p id="namemsg" class="login-message dn"></p>
+		   				<div class="login-form-group clearfix mt15">
 		   					<label><i class="ico-pwd"></i></label>
-		   					<input type="text" name="" placeholder="请输入密码">
+		   					<input type="text" name="password" id="password" placeholder="请输入密码">
+
 		   				</div>
-		   				<input type="submit" value="登 录" class="btn-red mt35">
+		   				<p id="pwdmsg" class="login-message dn"></p>
+		   				<input type="submit" value="登 录" class="btn-red mt15">
 
 		   			</form>
 		   		    <div class="login-other">
@@ -179,13 +183,21 @@
    <p style="border:none;">
      <script id="ebsgovicon" src="http://szcert.ebs.org.cn/govicon.js?id=9822308f-c3cf-4c02-851d-6bac920e6898&amp;width=120&amp;height=50&amp;type=2" type="text/javascript" charset="utf-8"></script><a href="http://szcert.ebs.org.cn/9822308f-c3cf-4c02-851d-6bac920e6898" target="_blank"><img src="http://szcert.ebs.org.cn/Images/newGovIcon.gif" title="深圳市市场监督管理局企业主体身份公示" alt="深圳市市场监督管理局企业主体身份公示" width="120" height="50" border="0" style="border-width:0px;border:hidden; border:none;"></a><script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
 	</p>
-     
     </div>
   </div>
 </div>
 
 
 <script type="text/javascript" src="js/jquery.min.js"></script>    
-<script type="text/javascript" src="js/main.js"></script>    
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/emailTips.min.js"></script>    
+<script type="text/javascript">
+	$(function(){
+		$.job1001EmailTips({
+			'username':{className:'email-tips-list'}
+		});
+
+	});
+</script>
 </body>
 </html>

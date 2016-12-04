@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/jsdialog.css">
-
     <body>
         <div id="header">
             <div class="wrapper">
@@ -293,9 +291,16 @@
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="http://www.ofweek.com/ofweek/js/template.js"></script>
+        <script type="text/javascript" src="js/emailTips.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/ofw-reg.js?v=20161201"></script>
-
+        <script type="text/javascript" src="js/ofw-reg.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $.job1001EmailTips({
+                    'account':{className:'email-tips-list'}
+                });
+            });
+        </script>
     </body>
 
 </html>

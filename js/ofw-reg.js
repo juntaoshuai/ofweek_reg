@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // 处理库之间的冲突
-window.myjq = window.myjq || jQuery.noConflict(true);
+//window.myjq = window.myjq || jQuery.noConflict(true);
 
 (function($) {
 	/*====================常用工具=====================*/
@@ -457,4 +457,4 @@ window.myjq = window.myjq || jQuery.noConflict(true);
 			} catch (r) {}
 		});
 	}
-})(myjq);
+})(jQuery);

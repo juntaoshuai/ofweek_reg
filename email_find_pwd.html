@@ -21,26 +21,28 @@
         <div id="content">
             <div class="greybg-box">
                 <div class="wrapper content-box clearfix">
-                    <form action="" method="post">
-                        <ul class="find-pwd-tab clearfix">
-                            <li><a href="email_find_pwd.html">邮箱找回</a></li>
-                            <li class="active"><a href="mobile_find_pwd.html">手机找回</a></li>
-                        </ul>
-                        <div class="form-group clearfix">
-                            <label class="control-label">邮箱：</label>
-                            <div class="form-control">
-                                <input type="text" name="" class="txt" placeholder="请输入邮箱" id="newpwd">
+                    <div class="find-pwd-box">
+                        <form action="set_pwd.html" method="post" id="emailFindPwdForm">
+                            <ul class="find-pwd-tab clearfix">
+                                <li class="active"><a href="email_find_pwd.html">邮箱找回</a></li>
+                                <li><a href="mobile_find_pwd.html">手机找回</a></li>
+                            </ul>
+                            <div class="form-group clearfix">
+                                <label class="control-label">邮箱：</label>
+                                <div class="form-control">
+                                    <input type="text" name="email" class="txt" placeholder="请输入邮箱" id="email">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group clearfix">
-                            <label class="control-label">验证码：</label>
-                            <div class="form-control">
-                                <input type="text" name="" class="txt txt160" placeholder="请填写验证码" id="newpwd">
-                                <input type="button" value="发送验证码" class="getcode">
+                            <div class="form-group clearfix">
+                                <label class="control-label">验证码：</label>
+                                <div class="form-control">
+                                    <input type="text" name="validate_code" class="txt txt160" placeholder="请填写验证码" id="validate_code">
+                                    <input type="button" value="发送验证码" disabled="disabled" class="getcode">
+                                </div>
                             </div>
-                        </div>
-                        <input type="submit" value="设置密码" class="btn-red">
-                    </form>
+                            <input type="submit" value="设置密码" class="btn-red">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,6 +124,16 @@
         </div>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/emailTips.min.js"></script>
+        <script type="text/javascript">
+        $(function() {
+            $.job1001EmailTips({
+                'email': {
+                    className: 'email-tips-list'
+                }
+            });
+        })
+        </script>
     </body>
 
 </html>
