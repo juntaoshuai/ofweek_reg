@@ -226,7 +226,10 @@ jQuery(function($) {
         'email': /^[A-Za-z0-9-_\.]+\@([A-Za-z0-9-_]+\.)+[A-Za-z0-9]{2,6}$/,
         'pwd': /^(?=[\w\W])[^*]{6,20}$/,
         'name': /^[\u4e00-\u9fa5A-Za-z]{1,20}$/,
-        'companyname': /^[\u4e00-\u9fa5A-Za-z_\-\(\)\（\）]{4,50}$/
+        'companyname': /^[\u4e00-\u9fa5A-Za-z_\-\(\)\（\）]{4,50}$/,
+        'telephone':/^\+\d{2,3}-\d{3,4}-\d{7,8}-\d{3,4}$/,
+        'address':/^[\u4e00-\u9fa5A-Za-z_\-\(\)\（\）]{1,30}$/,
+        'department': /^[\u4e00-\u9fa5A-Za-z]{1,20}$/
     }
 
 
@@ -431,8 +434,37 @@ jQuery(function($) {
                         pass($this);
                     }
                 }
+                if (id == "telephone") {
+                    if (checkEmpty($this)) {
+                        noPass("请输入电话号码", $this);
+                        $("#telephone-tips").hide();
+                    }else if(!RegCheck($this, RegConfig.telephone)){
+                        noPass("请输入正确的电话，由数字、- 组成", $this);
+                        $("#telephone-tips").hide();
+                    }
+                    else{
+                        pass($this);
+                        $("#telephone-tips").hide();
+
+                    }
+                }
+                if (id == "department") {
+                    if (checkEmpty($this) || !RegCheck($this, RegConfig.department)) {
+                        noPass("请输入中英文，限20个字", $this);
+                    }else{
+                        pass($this);
+                    }
+                }
+                if (id == "address") {
+                    if (checkEmpty($this) || !RegCheck($this, RegConfig.address)) {
+                        noPass("请输入中英文、数字、_、-、（）、（ ）组成，，限30个字", $this);
+                    }else{
+                        pass($this);
+                    }
+                }
 
             });
+            btnSubmit("#completeForm");
         },
         //登录页面
         loginForm: function() {
@@ -482,12 +514,27 @@ jQuery(function($) {
                 var id = $(this).attr("id"),
                     $this = $(this);
                 if (id == "newpwd") {
+                    var pwd=$this.val(),
+                        $pwdstr=$("#msn_password");
                     if (checkEmpty($this)) {
                         noPass("请输入密码", $this);
+                        $pwdstr.hide();
                     } else if (!RegCheck($this, RegConfig.pwd)) {
                         noPass("支持6-20位数字、字母和标点符号", $this);
+                        $pwdstr.hide();
                     } else {
-                        pass($this);
+                        $this.removeClass("error");
+                        $(".nopass").remove();
+                        $pwdstr.show().find("span").removeClass("active");
+                        if(pwd.length<=8 || /^\d+$/ .test(pwd)){   
+                            $pwdstr.show().find("span:eq(0)").addClass("active");
+                        }else if(pwd.length > 8 && /[A-Za-z]/.test(pwd) && /[0-9]+/.test(pwd) && /[,.<>{}~!@#$%^&*]/.test(pwd)){
+                            $pwdstr.show().find("span:eq(2)").addClass("active");
+                        }else if(pwd.length > 8 && pwd.length < 17 && pwd.match(/\D/) != null){
+                            $pwdstr.show().find("span:eq(1)").addClass("active");
+                        }else if(pwd.length > 16 && pwd.match(/\D/) != null){
+                            $pwdstr.show().find("span:eq(2)").addClass("active");
+                        }
                     }
 
                 }

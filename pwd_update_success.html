@@ -10,6 +10,11 @@
     <link rel="stylesheet" type="text/css" href="http://images.ofweek.com/css/ofw-global-steven.css">
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript">
+        setTimeout(function(){
+            location.href="index.html";
+        },5000);
+    </script>
 
     <body>
         <div id="header">
@@ -23,8 +28,8 @@
                 <div class="wrapper content-box">
                    <div class="success-handle pwd-success-handle  tc">
 		            	<h2>密码修改成功</h2>
-		                <p>5秒后自动跳转，如无跳转请点击 <a href="#" class="c369">刷新</a></p>
-		                <a href="#" target="_blank" class="btn-link">马上登录</a>
+		                <p>5秒后自动跳转，如无跳转请点击 <a href="#" class="c369" onclick="location.reload();">刷新</a></p>
+		                <a href="index.html" class="btn-link">马上登录</a>
 		            </div>
                 </div>
             </div>

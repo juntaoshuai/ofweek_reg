@@ -773,3 +773,7 @@ span.baidu-lg {
     line-height: 38px;
 
 }
+/*密码强度*/
+.passwordStrength{height: 30px;line-height: 30px;margin-left: 10px;}
+.passwordStrength span{width:44px;height:16px; line-height:16px;margin-right:1px; float: left; background:#d4d4d4; color:#464646; text-align:center;margin-top: 7px;}
+.passwordStrength .active {color:#fff;background-color:#71b83d;}
