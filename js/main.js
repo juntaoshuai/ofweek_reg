@@ -1,4 +1,31 @@
 jQuery(function($) {
+    //解决placeHolder不支持的情况 
+    var placehold = function() {
+        supportPlaceholder = 'placeholder' in document.createElement('input');
+
+        if (!supportPlaceholder) {
+            //页面一加载如果文本框值不为空，则清空placeholder
+            $("form input.txt,.login-form-group :text").each(function() {
+                    var hold = $(this).attr("placeholder");
+                    $('<p class="f-placeholder">' + hold + '</p>').insertAfter($(this));
+                })
+                .on("keydown keyup", function() {
+                    if ($(this).val() != "") {
+                        $(this).siblings(".f-placeholder").hide();
+                    } else {
+                        $(this).siblings(".f-placeholder").show();
+                    }
+                }).trigger("keydown");
+
+            $(".f-placeholder").click(function() {
+                $(this).prev().focus();
+            });
+
+        }
+    }
+
+    placehold();
+
     //下拉列表整体操作
     var pulldown = function() {
         $(".pulldown").click(function() {
@@ -35,7 +62,6 @@ jQuery(function($) {
     $(".country-hd input").click(function() {
         $(".conuntry-box").eq($(this).val()).show().siblings(".conuntry-box").hide();
     });
-
 
     //国家地区读取
     var loadCity = function() {
@@ -171,126 +197,6 @@ jQuery(function($) {
         }
     }
 
-    //验证码
-    //验证码倒计时
-    $("#getcode").click(function() {
-        /*
-            上面邮箱/手机为空   按钮灰色无法点击
-            上面图片验证码为空   
-            邮箱/手机不正确    
-            图片验证码不正确    
-        */
-        if ($(this).closest(".form-group").prevAll(".pass").length != 2) {
-            // $(this).attr("disabled","disabled");
-            $(this).css("background", "#ddd");
-            return false;
-        }
-
-
-        var iCount = 60,
-            $this = $(this),
-            timer = null;
-        var url = '';
-        if ($this.val() == "获取验证码") {
-            var mobile = $("#account").val();
-            if (mobile) {
-                url = "http://www.ieduchina.com/register.html?do=mobilecode";
-            } else {
-                mobile = $("#mobile").val();
-                url = "http://www.ieduchina.com/index.php?m=member&c=index&a=complete&do=mobilecode";
-            }
-
-            if (mobile == "") {
-                return false;
-            }
-
-            var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;
-            if (mobile.length != 11) {
-                return false;
-            }
-            if (!myreg.test(mobile)) {
-                return false;
-            }
-
-            $.post(url, { 'mobile': mobile }, function(data) {
-                if (data == 0) {
-                    $this.parent().find("label.error").html('验证码发送手机失败!');
-                    return false;
-                }
-                if (data == 1) { $this.parent().find("label.error").html('验证码已发送，请查看手机!'); }
-                if (data == 2) {
-                    $this.parent().find("label.error").html('请更换手机号!');
-                    return false;
-                }
-                if (data == 3) {
-                    $this.parent().find("label.error").html('该手机今日发送已达到上限!');
-                    return false;
-                }
-            });
-        }
-        var mobile = $("#account").val();
-        if (mobile == "") {
-            return false;
-        }
-
-        $(this).attr("disabled", "disabled");
-        $this.val(iCount + "s后重新发送");
-        timer = setInterval(function() {
-            iCount--;
-            if (iCount == 0) {
-                $this.val("获取验证码");
-                clearInterval(timer);
-                $this.attr("disabled", false);
-            } else {
-                $this.val(iCount + "s后重新发送");
-            }
-
-        }, 1000);
-
-    });
-
-    //密码验证
-    function checkPwd(obj) {
-        $(obj).blur(function() {
-            if (checkEmpty(obj)) {
-                noPass("请输入密码", obj);
-            } else if (!RegCheck(obj, RegConfig.pwd)) {
-                noPass("支持6-20位数字、字母和标点符号", obj);
-            } else {
-                pass(obj);
-            }
-
-        });
-
-    }
-
-    //确认密码
-    function checkRePwd(obj) {
-        $(obj).blur(function() {
-            if (checkEmpty(obj)) {
-                noPass("请再次输入密码", obj);
-            } else if ($("#pwd").val() != $(obj).val()) {
-                noPass("您2次输入的密码不一致", obj);
-            } else {
-                pass(obj);
-            }
-        });
-    }
-    //感兴趣行业
-    function checkRePwd(obj) {
-        $(obj).blur(function() {
-            if (checkEmpty(obj)) {
-                noPass("请再次输入密码", obj);
-            } else if ($("#pwd").val() != $(obj).val()) {
-                noPass("您2次输入的密码不一致", obj);
-            } else {
-                pass(obj);
-            }
-
-        });
-
-    }
-
     //感兴趣行业
     function checkInterest(obj, msg) {
         if ($(obj).text() == msg) {
@@ -323,8 +229,53 @@ jQuery(function($) {
         'companyname': /^[\u4e00-\u9fa5A-Za-z_\-\(\)\（\）]{4,50}$/
     }
 
+
+    //验证码
+    //验证码倒计时
+    
+    function sendCode(btn,data,url){
+        var iCount = 60,
+            $this = $(btn),
+            timer = null;
+        $this.attr("disabled", "disabled");
+        $this.val(iCount + "s后重新发送");
+        timer = setInterval(function() {
+            iCount--;
+            if (iCount == 0) {
+                $this.val("发送验证码");
+                clearInterval(timer);
+                $this.attr("disabled", false);
+            } else {
+                $this.val(iCount + "s后重新发送");
+            }
+
+        }, 1000);
+
+        $.post(url,data, function(data) {
+            $(".codemsg").remove();
+            $this.siblings(".nopass,.pass").remove();
+            if (data == 0) {
+                $("<p class='codemsg clear'>验证码发送失败!</p>").insertAfter($this);
+                $("#validate_code").addClass("error");
+                noPass("邮箱或手机格式不正确", $this);
+
+            }
+            if (data == 1) {
+                $("<p class='codemsg clear'>验证码已发送，请注册查收,<a href='javascript:;' class='c369'>重发</a></p>").insertAfter($this);
+                $("#validate_code").removeClass("error");
+
+            }
+            if (data == 2) {
+                $("<p class='codemsg clear'>今日发送已达上限</p>").insertAfter($this);
+                $("#validate_code").addClass("error");
+
+            }
+        });
+
+    }
+
     var valiate = {
-        regform: function() {
+        regForm: function() {
             $("#regForm .txt").blur(function() {
                 var id = $(this).attr("id"),
                     $this = $(this);
@@ -349,6 +300,16 @@ jQuery(function($) {
                     }
 
                 }
+                if (id == "validate_code") {
+                    if (checkEmpty($this)) {
+                        noPass("请输入验证码", $this);
+                        $(".codemsg").remove();
+                    } else {
+                        remoteCheck($this, 'js/data.txt', "您输入的验证码有误");
+                    }
+
+                }
+
                 //密码
                 if (id == "pwd") {
                     if (checkEmpty($this)) {
@@ -371,6 +332,28 @@ jQuery(function($) {
                     }
                 }
             });
+            //发送验证码
+            $("#regForm .getcode").click(function(){
+                //邮箱正确时
+                var data={"account":$("#account").val()}
+                if(RegCheck("#account",RegConfig.email)){
+                    sendCode(this,data,"js/data.txt");
+
+
+
+                //手机和图片验证码正确时
+                }else if(RegCheck("#account", RegConfig.mobile) && $("#img_code").siblings(".pass").length){
+                    sendCode(this,data,"js/data.txt");
+
+
+
+                }else{
+                    return;
+                }
+            });
+
+      
+
 
             //按钮提交 
             $("#regForm .btn-red").click(function(ev) {
@@ -450,9 +433,6 @@ jQuery(function($) {
                 }
 
             });
-
-
-
         },
         //登录页面
         loginForm: function() {
@@ -535,12 +515,22 @@ jQuery(function($) {
                 if (id == "email") {
                     if (checkEmpty($this)) {
                         noPass("请输入邮箱", $this);
-                    } else {
-                        remoteCheck($this, 'js/data1.json', "您输入的邮箱不存在，请更换");
-                        if ($this.siblings(".pass").length) {
-                            alert(124)
-                            $(".getcode").attr("disabled", false);
-                        }
+                    }else{
+                            $.ajax({
+                                dataType: "json",
+                                url: "js/data1.json",
+                                data: { name: $this.val() },
+                                success: function(data) {
+                                    if (data.status == "y") {
+                                        noPass("您输入的邮箱不存在，请更换", $this);
+                                    } else {
+                                        pass($this);
+                                        $(".getcode").attr("disabled", false);
+
+                                    }
+                                }
+                            });
+                       
                     }
 
                 }
@@ -556,30 +546,115 @@ jQuery(function($) {
             btnSubmit("#emailFindPwdForm");
 
             $("#emailFindPwdForm").on('click', '.getcode', function() {
+                var $this = $(this),
+                    iCount = 60,
+                    timer = null;
+                $(this).attr("disabled", "disabled");
+                $this.val(iCount + "s后重新发送");
+                timer = setInterval(function() {
+                    iCount--;
+                    if (iCount == 0) {
+                        $this.val("发送验证码");
+                        clearInterval(timer);
+                        $this.attr("disabled", false);
+                    } else {
+                        $this.val(iCount + "s后重新发送");
+                    }
+
+                }, 1000);
+                $.post("js/data.txt", { email: $("#email").val() }, function(data) {
+                    $(".codemsg").remove();
+                    $this.siblings(".nopass,.pass").remove();
+                    if (data == 0) {
+                        $("<p class='codemsg clear'>验证码发送失败!</p>").insertAfter($this);
+                        $("#validate_code").addClass("error");
+
+                    }
+                    if (data == 1) {
+                        $("<p class='codemsg clear'>验证码已发送，请注册查收,<a href='javascript:;' class='c369'>重发</a></p>").insertAfter($this);
+                        $("#validate_code").removeClass("error");
+                    }
+                    if (data == 2) {
+                        $("<p class='codemsg clear'>今日发送已达上限</p>").insertAfter($this);
+                        $("#validate_code").addClass("error");
+                    }
+                });
+
+            });
+
+            $("#emailFindPwdForm").on('click', '.codemsg a', function() {
+                $("#emailFindPwdForm .getcode").trigger("click");
+            });
+
+        },
+        //手机找回密码
+         mobileFindPwdForm: function() {
+            $("#mobileFindPwdForm .txt").blur(function() {
+                var id = $(this).attr("id"),
+                    $this = $(this);
+                //手机或邮箱验证：
+                if (id == "mobile") {
+                    if (checkEmpty($this) || !RegCheck($this, RegConfig.mobile)) {
+                        noPass("请输入正确的11位手机号码", $this);
+                    }else{
+                            $.ajax({
+                                dataType: "json",
+                                url: "js/data1.json",
+                                data: { name: $this.val() },
+                                success: function(data) {
+                                    if (data.status == "y") {
+                                        noPass("您输入的手机不存在，请更换", $this);
+                                    } else {
+                                        pass($this);
+                                        $(".getcode").attr("disabled", false);
+
+                                    }
+                                }
+                            });
+                       
+                    }
+
+                }
+                if (id == "validate_code") {
+                    $(".codemsg").remove();
+                    if (checkEmpty($this)) {
+                        noPass("请输入验证码", $this);
+                    }
+
+                }
+            });
+
+            btnSubmit("#mobileFindPwdForm");
+
+            /*$("#mobileFindPwdForm").on('click', '.getcode', function() {
                 var $this = $(this);
                 $.post("js/data.txt", { email: $("#email").val() }, function(data) {
                     $(".codemsg").remove();
                     $this.siblings(".nopass,.pass").remove();
                     if (data == 0) {
                         $("<p class='codemsg clear'>验证码发送失败!</p>").insertAfter($this);
+                        $("#validate_code").addClass("error");
+
                     }
                     if (data == 1) {
                         $("<p class='codemsg clear'>验证码已发送，请注册查收,<a href='javascript:;' class='c369'>重发</a></p>").insertAfter($this);
+                        $("#validate_code").removeClass("error");
                     }
                     if (data == 2) {
                         $("<p class='codemsg clear'>今日发送已达上限</p>").insertAfter($this);
+                        $("#validate_code").addClass("error");
+
                     }
                 });
 
-            });
+            });*/
 
-            $("#emailFindPwdForm").on('click','.codemsg a',function(){
-                $("#emailFindPwdForm .getcode").trigger("click");
+            $("#mobileFindPwdForm").on('click', '.codemsg a', function() {
+                $("#mobileFindPwdForm .getcode").trigger("click");
             });
-            
-
 
         }
+
 
     }
 
@@ -595,11 +670,13 @@ jQuery(function($) {
 
 
 
-    valiate.regform();
+    valiate.regForm();
     valiate.completeForm();
     valiate.loginForm();
     valiate.setPwdForm();
     valiate.emailFindPwdForm();
+    valiate.mobileFindPwdForm();
+
 
 
 

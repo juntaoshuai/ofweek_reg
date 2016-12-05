@@ -356,6 +356,9 @@ span.baidu-lg {
     float: left;
     display: inline;
 }
+.form-control{
+    position: relative;
+}
 
 .xin {
     color: #ca0000;
@@ -749,4 +752,24 @@ span.baidu-lg {
     width: 264px;
     top: 38px;
     left: 38px;
+}
+
+.f-placeholder {
+    -moz-user-select: none;
+    color: #b5b5b5;
+    cursor: text;
+    font-size: 12px;
+    height: 28px;
+    left: 8px;
+    line-height: 28px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.login-form-group .f-placeholder{
+    left:52px;
+    height: 38px;
+    line-height: 38px;
+
 }
