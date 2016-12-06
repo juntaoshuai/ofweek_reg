@@ -71,7 +71,7 @@
                                 <input type="text" name="" class="txt txt162 mr10" placeholder="请输入中文或英文，限20个字" id="job" name="job">
                                 <div class="pulldown-box w100">
                                     <div class="pulldown">
-                                        <span class="select-txt w78">工作年限</span>
+                                        <span class="select-txt w78" id="workexperience-txt">工作年限</span>
                                         <i></i>
                                     </div>
                                     <ul class="pulldown-list">
@@ -84,6 +84,7 @@
                                     </ul>
                                     <input type="hidden" name="workexperience" id="workexperience">
                                 </div>
+                                <div class="nopass-pulldonw" id="workexperience-msg" style="display:none;">请选择工作年限</div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -175,21 +176,21 @@
                                 <div class="conuntry-box">
                                     <div class="pulldown-box w140 fl">
                                         <div class="pulldown">
-                                            <span class="select-txt w78">请选择</span>
+                                            <span class="select-txt w78" id="province-txt">请选择</span>
                                             <i></i>
                                         </div>
                                         <ul class="pulldown-list" id="province_list">
                                         </ul>
-                                        <input type="hidden" name="workexperience" id="workexperience">
+                                        <input type="hidden" name="province" id="province">
                                     </div>
                                     <div class="pulldown-box w140 fl ml10">
                                         <div class="pulldown" id="city-pulldown">
-                                            <span class="select-txt w78">请选择</span>
+                                            <span class="select-txt w78" id="city-txt">请选择</span>
                                             <i></i>
                                         </div>
                                         <ul class="pulldown-list" id="city_list">
                                         </ul>
-                                        <input type="hidden" name="workexperience" id="workexperience">
+                                        <input type="hidden" name="city" id="city">
                                     </div>
                                 </div>
                                 <!--国外-->
@@ -443,6 +444,7 @@
                                         <input type="hidden" name="workexperience" id="workexperience">
                                     </div>
                                 </div>
+                                <div class="nopass" id="areamsg" style="display:none;">请选择地区</div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -589,6 +591,16 @@
                 $.job1001EmailTips({
                     'email':{className:'email-tips-list'}
                 }); 
+
+                var method = getUrlKey("method");
+                if (method == "mobile") {
+                    $(".form-group:eq(3)").show();
+                    $(".form-group:eq(2)").hide();
+                } else {
+                    $(".form-group:eq(2)").show();
+                    $(".form-group:eq(3)").hide();
+
+                }
             })
             </script>
     </body>

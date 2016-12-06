@@ -691,7 +691,7 @@ span.baidu-lg {
     margin-left: 10px;
 }
 
-.nopass{
+.nopass,.nopass-pulldonw{
     display: block;
     font-size: 12px;
     line-height:14px;
@@ -703,7 +703,10 @@ span.baidu-lg {
     margin-top: 35px;
     *margin-top: 5px;
 }
-
+.nopass-pulldonw{
+    position: absolute;
+    right: 0;
+}
 
 .pass{
     float: left;

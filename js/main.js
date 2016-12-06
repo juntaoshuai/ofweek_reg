@@ -86,6 +86,7 @@ jQuery(function($) {
                             })
                             $("#city_list").html(html);
                             $txt.html($("#city_list li:first").html());
+                            $("#city").val($("#city_list li:first").html());
                             return false;
 
                         }
@@ -98,17 +99,6 @@ jQuery(function($) {
         })
     }
     loadCity();
-
-    //注册页面手机或邮箱注册后的显示
-    (function() {
-        var method = getUrlKey("method");
-        if (method == "mobile") {
-            $(".form-group:eq(3)").show();
-        } else {
-            $(".form-group:eq(2)").show();
-
-        }
-    })();
 
 
     //完善信息页面性别选中
@@ -227,11 +217,19 @@ jQuery(function($) {
         'pwd': /^(?=[\w\W])[^*]{6,20}$/,
         'name': /^[\u4e00-\u9fa5A-Za-z]{1,20}$/,
         'companyname': /^[\u4e00-\u9fa5A-Za-z_\-\(\)\（\）]{4,50}$/,
-        'telephone':/^\+\d{2,3}-\d{3,4}-\d{7,8}-\d{3,4}$/,
+        'telephone':/^\+\d{2,3}-\d{3,4}-\d{7,8}(-\d{3,4})?$/,
         'address':/^[\u4e00-\u9fa5A-Za-z_\-\(\)\（\）]{1,30}$/,
         'department': /^[\u4e00-\u9fa5A-Za-z]{1,20}$/
     }
 
+//下拉框选择
+function checkPulldown(txtobj,msg){
+    if($(txtobj).text()==msg){
+        return true;
+    }else{
+        return false;
+    }
+}
 
     //验证码
     //验证码倒计时
@@ -399,8 +397,6 @@ jQuery(function($) {
                     } else if (!RegCheck($this, RegConfig.email)) {
                         noPass("邮箱格式不正确", $this);
 
-                    } else if (checkLength($this, 50)) {
-                        noPass("邮箱长度超过限定", $this);
                     } else {
                         remoteCheck($this, 'js/data1.json', "该邮箱已经存在，请更换");
                     }
@@ -464,7 +460,28 @@ jQuery(function($) {
                 }
 
             });
-            btnSubmit("#completeForm");
+            // btnSubmit("#completeForm");
+            // checkPulldown("#province-txt","请选择");
+            // checkPulldown("#city-txt","请选择");
+             $("#completeForm .btn-red").click(function() {
+                $("#completeForm :text").trigger("blur");
+                if(checkPulldown("#province-txt","请选择")){
+                    $("#areamsg").show();
+                }else{
+                    $("#areamsg").hide();
+                }  
+                if(checkPulldown("#workexperience-txt","工作年限")){
+                    $("#workexperience-msg").show();
+                }else{
+                    $("#workexperience-msg").hide();
+                }  
+                if ($(".error").length) {
+                    return false;
+                }
+            });
+
+
+
         },
         //登录页面
         loginForm: function() {
