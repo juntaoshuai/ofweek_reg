@@ -464,16 +464,20 @@ function checkPulldown(txtobj,msg){
             // checkPulldown("#province-txt","请选择");
             // checkPulldown("#city-txt","请选择");
              $("#completeForm .btn-red").click(function() {
-                $("#completeForm :text").trigger("blur");
-                if(checkPulldown("#province-txt","请选择")){
-                    $("#areamsg").show();
+
+                $("#completeForm :text:visible").trigger("blur");
+                checkInterest("#jselect", "请选择");
+                if(checkPulldown("#province-txt","请选择") && $("#province-txt").closest(".conuntry-box").is(":visible") || checkPulldown("#foreign-txt","请选择") && $("#foreign-txt").closest(".conuntry-box").is(":visible")){
+                    $("#areamsg").show().addClass("error");
                 }else{
-                    $("#areamsg").hide();
+                    $("#areamsg").hide().removeClass("error");
                 }  
+                alert(124);
                 if(checkPulldown("#workexperience-txt","工作年限")){
-                    $("#workexperience-msg").show();
+                    $("#workexperience-msg").show().addClass("error");
                 }else{
-                    $("#workexperience-msg").hide();
+                    $("#workexperience-msg").hide().removeClass("error");
+
                 }  
                 if ($(".error").length) {
                     return false;
