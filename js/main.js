@@ -472,7 +472,6 @@ function checkPulldown(txtobj,msg){
                 }else{
                     $("#areamsg").hide().removeClass("error");
                 }  
-                alert(124);
                 if(checkPulldown("#workexperience-txt","工作年限")){
                     $("#workexperience-msg").show().addClass("error");
                 }else{
